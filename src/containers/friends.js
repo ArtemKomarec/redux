@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
@@ -9,6 +9,8 @@ import {
 function Friends() {
 	const dispatch = useDispatch();
 	const allUsers = useSelector(({ users }) => users);
+	const [moreInfo, showMoreInfo] = useState(false);
+
 	return (
 		<>
 			{allUsers.map((user, index) => (
@@ -17,11 +19,9 @@ function Friends() {
 						<h4 className="user-name">{user.name}</h4>
 						<p className="user-friend">Friend: {user.friend ? "yes" : "no"}</p>
 					</div>
-
-					<div className="user-field">
+					<div className="btn-field">
 						<button
 							className="user-friend-btn"
-							style={{}}
 							onClick={() => dispatch(userFavouriteAction(index, user.friend))}
 						>
 							{user.friend ? "remove friend" : "make friend"}
@@ -49,8 +49,6 @@ const UsersListWrapper = styled.div`
 
 	.users-list-container {
 		width: 200px;
-		display: flex;
-		flex-direction: column;
 	}
 
 	.user-name {
@@ -61,15 +59,14 @@ const UsersListWrapper = styled.div`
 		margin: "4px 0px";
 	}
 
-	.user-field {
+	.btn-field {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		gap: 8px;
 	}
 
 	.user-friend-btn {
 		height: 20px;
-		width: 100px;
 	}
 
 	.delete-user-btn {

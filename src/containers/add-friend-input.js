@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { userAddAction } from "../store/actionCreators/users";
 
 function AddFriendInput() {
 	const [name, setName] = useState("");
 	const dispatch = useDispatch();
+	const id = useSelector(({ users }) => users.length + 1);
 	const handleSubmit = () => {
 		if (name.match(/^\s*$/) || name === "") {
 		} else {
-			dispatch(userAddAction({ name }));
+			dispatch(userAddAction({ id, name }));
 		}
 		setName("");
 	};
