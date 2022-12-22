@@ -6,12 +6,10 @@ function AddFriendInput() {
 	const [name, setName] = useState("");
 	const dispatch = useDispatch();
 	const handleSubmit = () => {
-		if (name) {
-			console.log(1);
+		if (name.match(/^\s*$/) || name === "") {
 		} else {
-			console.log(0);
+			dispatch(userAddAction({ name }));
 		}
-		dispatch(userAddAction({ name }));
 		setName("");
 	};
 

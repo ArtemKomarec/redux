@@ -29,6 +29,7 @@ function Friends() {
 							Friend: {user.friend ? "yes" : "no"}
 						</p>
 					</div>
+
 					<div
 						style={{
 							display: "flex",
@@ -42,7 +43,7 @@ function Friends() {
 						>
 							{user.friend ? "remove friend" : "make friend"}
 						</button>
-						{/* -------- */}
+
 						<button
 							style={{ height: "20px" }}
 							onClick={() => dispatch(userDeleteAction(index))}
@@ -50,7 +51,6 @@ function Friends() {
 							Delete
 						</button>
 					</div>
-					{/* <button style={{ height: "20px" }}>Star</button> */}
 				</div>
 			))}
 		</>
