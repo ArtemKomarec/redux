@@ -1,17 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { userAddAction } from "../store/actionCreators/users";
 
-export default function AddFriendInput(props) {
-	// console.log(props);
+function AddFriendInput() {
+	const [name, setName] = useState("");
+	const dispatch = useDispatch();
+	const handleSubmit = () => {
+		if (name) {
+			console.log(1);
+		} else {
+			console.log(0);
+		}
+		dispatch(userAddAction({ name }));
+		setName("");
+	};
+
 	return (
-		<input
+		<div
 			style={{
-				width: "394px",
-				borderTop: "0px",
-				borderLeft: "0px",
-				borderRight: "0px",
-				borderBottom: "2px solid #c3b7b7",
+				display: "flex",
+				flexDirection: "row",
+				alignItems: "center",
+				gap: "12px",
 			}}
-			placeholder="Type friend name"
-		/>
+		>
+			<input
+				style={{
+					width: "394px",
+					borderTop: "0px",
+					borderLeft: "0px",
+					borderRight: "0px",
+					borderBottom: "2px solid #c3b7b7",
+				}}
+				placeholder="Type friend name"
+				value={name}
+				onChange={(e) => setName(e.target.value)}
+			/>
+			<button style={{ width: 90 }} onClick={handleSubmit}>
+				add user
+			</button>
+		</div>
 	);
 }
+
+export default React.memo(AddFriendInput);

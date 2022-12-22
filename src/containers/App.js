@@ -1,6 +1,5 @@
 import { Provider } from "react-redux";
-import { createStore } from "redux";
-import { FriendListApp } from "./friend-list-app";
+import FriendListApp from "./friend-list-app";
 import { store } from "../store/store";
 import React from "react";
 
@@ -12,4 +11,4 @@ function App() {
 	);
 }
 
-export default App;
+export default React.memo(App);

@@ -1,13 +1,4 @@
-export const initialState = {
-	deleteFriends: [
-		{
-			name: "John",
-		},
-		{
-			name: "Nick",
-		},
-		{
-			name: "Mike",
-		},
-	],
-};
+export const initialState = [
+	{ name: "Nick", friend: false },
+	{ name: "Mike", friend: false },
+];
