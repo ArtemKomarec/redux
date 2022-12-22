@@ -1,12 +1,13 @@
 import { Provider } from "react-redux";
-import FriendListApp from "./friend-list-app";
+import FriendListApp from "./users-form";
 import { store } from "../store/store";
 import React from "react";
+import UsersForm from "./users-form";
 
 function App() {
 	return (
 		<Provider store={store}>
-			<FriendListApp />
+			<UsersForm />
 		</Provider>
 	);
 }
