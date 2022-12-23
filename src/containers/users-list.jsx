@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
@@ -80,7 +80,5 @@ const StyledUsersList = styled.div`
 		height: 20px;
 	}
 `;
-
-const UsersListWrapper = styled.div``;
 
 export default React.memo(UsersList);

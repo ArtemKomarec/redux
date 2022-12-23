@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { userAddAction } from "../store/actionCreators/users";
-// import debounce from "lodash.debounce";
 import { debounce } from "lodash";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const textFields = ["name", "surname", "profession"];
 
@@ -20,15 +21,28 @@ export const AddUserForm = () => {
 
 	const handleSubmit = () => {
 		console.log(user);
-		if (user.name.match(/^\s*$/) || user.name === "") {
+		if (
+			user.name === "" ||
+			user.surname === "" ||
+			user.age === "" ||
+			user.profession === ""
+		) {
+			toast.error("Fill all fields !", {
+				position: toast.POSITION.TOP_RIGHT,
+			});
 		} else {
 			dispatch(userAddAction({ user, id }));
+			toast.success("User created !", {
+				position: toast.POSITION.TOP_RIGHT,
+			});
 			setUser({ name: "", surname: "", age: "", profession: "" });
 		}
 	};
 
 	const changeInput = (e) => {
-		console.log(e.target.value);
+		if (e.target.value === "" && textFields.includes(e.target.name)) {
+			setUser({ ...user, [e.target.name]: e.target.value });
+		}
 		if (textFields.includes(e.target.name)) {
 			if (/[a-zA-Z]+/g.test(e.target.value)) {
 				setUser({ ...user, [e.target.name]: e.target.value });
@@ -40,42 +54,46 @@ export const AddUserForm = () => {
 		}
 	};
 
-	const debFunc = debounce(changeInput, 300);
+	// const changeInput = debounce(changeInput, 300);
 
-	useEffect(() => {
-		return () => {
-			debFunc.cancel();
-		};
-	}, [debFunc]);
+	// useEffect(() => {
+	// 	return () => {
+	// 		changeInput.cancel();
+	// 	};
+	// }, [changeInput]);
 
 	return (
 		<UserFormWrapper>
 			<h1>Fill user profile</h1>
-
+			<ToastContainer />
 			<input
 				className="add-user-field"
 				name="name"
 				placeholder="Type user name"
 				type="text"
-				onChange={debFunc}
+				value={user.name}
+				onChange={changeInput}
 			/>
 			<input
 				className="add-user-field"
 				placeholder="Type user surname"
 				name="surname"
-				onChange={debFunc}
+				value={user.surname}
+				onChange={changeInput}
 			/>
 			<input
 				className="add-user-field"
 				placeholder="Type user age"
 				name="age"
-				onChange={debFunc}
+				value={user.age}
+				onChange={changeInput}
 			/>
 			<input
 				className="add-user-field"
 				name="profession"
+				value={user.profession}
 				placeholder="Type user profession"
-				onChange={debFunc}
+				onChange={changeInput}
 			/>
 			{/* <input
 				className="add-user-field"
