@@ -15,7 +15,14 @@ export const users = (state = initialState, action) => {
 		}
 		case USER_ADD_ACTION: {
 			const [...newState] = state;
-			newState.push(action.user);
+			const newUser = {
+				id: action.user.id,
+				name: action.user.user.name,
+				surname: action.user.user.surname,
+				age: action.user.user.age,
+				profession: action.user.user.profession,
+			};
+			newState.push(newUser);
 			return newState;
 		}
 		case USER_FAVOURITE_ACTION: {

@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import AddFriendInput from "./add-friend-input";
-import Friends from "./friends";
+import UsersList from "./users-list";
 
 function UsersForm() {
 	return (
 		<UsersFormWrapper>
 			<h1 className="users-list-title">Friends list</h1>
 			<AddFriendInput />
-			<Friends />
+			<UsersList />
 		</UsersFormWrapper>
 	);
 }

@@ -1,13 +1,23 @@
-import { Provider } from "react-redux";
-import FriendListApp from "./users-form";
-import { store } from "../store/store";
 import React from "react";
-import UsersForm from "./users-form";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Header } from "./header";
+import { AddUserForm } from "./add-user-form";
+import UsersList from "./users-list";
+import { Provider } from "react-redux";
+import { store } from "../store/store";
 
 function App() {
 	return (
 		<Provider store={store}>
-			<UsersForm />
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Header />}>
+						{/* <Route  element={}></Route> */}
+						<Route path="add-user-form" element={<AddUserForm />} />
+						<Route path="users-list" element={<UsersList />} />
+					</Route>
+				</Routes>
+			</BrowserRouter>
 		</Provider>
 	);
 }

@@ -11,9 +11,10 @@ export const userDeleteAction = (id) => {
 	};
 };
 
-export const userAddAction = (user) => {
+export const userAddAction = (user, id) => {
 	return {
 		type: USER_ADD_ACTION,
+		// user: user.user.name,
 		user,
 	};
 };

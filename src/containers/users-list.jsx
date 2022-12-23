@@ -6,15 +6,15 @@ import {
 	userFavouriteAction,
 } from "../store/actionCreators/users";
 
-function Friends() {
+function UsersList() {
 	const dispatch = useDispatch();
 	const allUsers = useSelector(({ users }) => users);
-	const [moreInfo, showMoreInfo] = useState(false);
 
 	return (
-		<>
+		<StyledUsersList>
+			{console.log(allUsers)}
 			{allUsers.map((user, index) => (
-				<UsersListWrapper key={user.name + index} style={{}}>
+				<div className="users-list-wrapper" key={user.name + index}>
 					<div className="users-list-container">
 						<h4 className="user-name">{user.name}</h4>
 						<p className="user-friend">Friend: {user.friend ? "yes" : "no"}</p>
@@ -34,18 +34,25 @@ function Friends() {
 							Delete
 						</button>
 					</div>
-				</UsersListWrapper>
+				</div>
 			))}
-		</>
+		</StyledUsersList>
 	);
 }
 
-const UsersListWrapper = styled.div`
-	display: flex;
-	flex-direction: row;
-	gap: 40px;
-	align-items: center;
-	justify-content: space-between;
+const StyledUsersList = styled.div`
+	width: 400px;
+	margin: 40px auto;
+	padding: 20px;
+	border: 2px solid #c3b7b7;
+
+	.users-list-wrapper {
+		display: flex;
+		flex-direction: row;
+		gap: 40px;
+		align-items: center;
+		justify-content: space-between;
+	}
 
 	.users-list-container {
 		width: 200px;
@@ -74,4 +81,6 @@ const UsersListWrapper = styled.div`
 	}
 `;
 
-export default React.memo(Friends);
+const UsersListWrapper = styled.div``;
+
+export default React.memo(UsersList);
