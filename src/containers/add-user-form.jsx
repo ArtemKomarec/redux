@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { userAddAction } from "../store/actionCreators/users";
+// import debounce from "lodash.debounce";
+import { debounce } from "lodash";
+
+const textFields = ["name", "surname", "profession"];
 
 export const AddUserForm = () => {
 	const [user, setUser] = useState({
@@ -10,63 +14,68 @@ export const AddUserForm = () => {
 		age: "",
 		profession: "",
 	});
+
 	const dispatch = useDispatch();
 	const id = useSelector(({ users }) => users.length);
+
 	const handleSubmit = () => {
 		console.log(user);
 		if (user.name.match(/^\s*$/) || user.name === "") {
-			// e.target.value.match(/^(1[4-9]|[2-9]\d)$/gm
 		} else {
 			dispatch(userAddAction({ user, id }));
 			setUser({ name: "", surname: "", age: "", profession: "" });
 		}
 	};
+
+	const changeInput = (e) => {
+		console.log(e.target.value);
+		if (textFields.includes(e.target.name)) {
+			if (/[a-zA-Z]+/g.test(e.target.value)) {
+				setUser({ ...user, [e.target.name]: e.target.value });
+			}
+		} else if (e.target.name === "age") {
+			if (/^(1[89]|[2-9]\d)$/gm) {
+				setUser({ ...user, [e.target.name]: e.target.value });
+			}
+		}
+	};
+
+	const debFunc = debounce(changeInput, 300);
+
+	useEffect(() => {
+		return () => {
+			debFunc.cancel();
+		};
+	}, [debFunc]);
+
 	return (
 		<UserFormWrapper>
 			<h1>Fill user profile</h1>
+
 			<input
 				className="add-user-field"
+				name="name"
 				placeholder="Type user name"
-				value={user.name}
-				onChange={(e) =>
-					setUser((newUser) => {
-						newUser.name = e.target.value;
-						return { ...newUser };
-					})
-				}
+				type="text"
+				onChange={debFunc}
 			/>
 			<input
 				className="add-user-field"
 				placeholder="Type user surname"
-				value={user.surname}
-				onChange={(e) =>
-					setUser((newUser) => {
-						newUser.surname = e.target.value;
-						return { ...newUser };
-					})
-				}
+				name="surname"
+				onChange={debFunc}
 			/>
 			<input
 				className="add-user-field"
 				placeholder="Type user age"
-				value={user.age}
-				onChange={(e) =>
-					setUser((newUser) => {
-						newUser.age = e.target.value;
-						return { ...newUser };
-					})
-				}
+				name="age"
+				onChange={debFunc}
 			/>
 			<input
 				className="add-user-field"
+				name="profession"
 				placeholder="Type user profession"
-				value={user.profession}
-				onChange={(e) =>
-					setUser((newUser) => {
-						newUser.profession = e.target.value;
-						return { ...newUser };
-					})
-				}
+				onChange={debFunc}
 			/>
 			{/* <input
 				className="add-user-field"
