@@ -74,6 +74,7 @@ const StyledUsersList = styled.div`
 	.image-container {
 		height: 70px;
 		width: 70px;
+		display: flex;
 		border: 2px solid black;
 		border-radius: 50%;
 	}

@@ -15,12 +15,18 @@ export const AddUserForm = () => {
 		age: "",
 		profession: "",
 		friend: "",
+		avatar: "",
 	});
+	const [userImage, setUserImage] = useState(null);
+	const [imageUrl, setImageUrl] = useState(null);
 
 	const dispatch = useDispatch();
 	const id = useSelector(({ users }) => users.length);
 
-	const handleSubmit = () => {
+	const handleSubmit = (e) => {
+		console.log(imageUrl);
+		setUser({ ...user, avatar: imageUrl });
+
 		console.log(user);
 		if (
 			user.name === "" ||
@@ -31,7 +37,9 @@ export const AddUserForm = () => {
 			toast.error("Fill all fields !", {
 				position: toast.POSITION.TOP_RIGHT,
 			});
+			console.log(user);
 		} else {
+			setUser({ ...user, avatar: imageUrl });
 			dispatch(userAddAction({ user, id }));
 			toast.success("User created !", {
 				position: toast.POSITION.TOP_RIGHT,
@@ -42,6 +50,7 @@ export const AddUserForm = () => {
 				age: "",
 				profession: "",
 				friend: "",
+				avatar: "",
 			});
 		}
 	};
@@ -69,6 +78,21 @@ export const AddUserForm = () => {
 	const handleSelectFriend = (e) => {
 		setUser({ ...user, friend: e.target.value });
 	};
+
+	const handleUploadImage = (e) => {
+		setUserImage(e.target.files[0]);
+	};
+
+	useEffect(() => {
+		if (userImage) {
+			setImageUrl((image) => {
+				image = URL.createObjectURL(userImage);
+				setUser({ ...user, avatar: image });
+				return image;
+			});
+			console.log(imageUrl);
+		}
+	}, [userImage]);
 
 	return (
 		<UserFormWrapper>
@@ -107,6 +131,18 @@ export const AddUserForm = () => {
 				<option value="true">Yes</option>
 				<option value="">No</option>
 			</select>
+			<label htmlFor="upload-image">
+				<span className="upload-image-btn">Upload image</span>
+			</label>
+			{userImage && imageUrl && <img src={imageUrl} />}
+			<input
+				id="upload-image"
+				type="file"
+				name="avatar"
+				accept="image/"
+				style={{ display: "none" }}
+				onChange={handleUploadImage}
+			/>
 			<button className="add-user-btn" onClick={handleSubmit}>
 				add user
 			</button>
@@ -132,5 +168,15 @@ const UserFormWrapper = styled.div`
 		&:focus-visible {
 			outline: none;
 		}
+	}
+
+	.upload-image {
+		display: none;
+	}
+
+	.upload-image-btn {
+		padding: 4px 8px;
+		border: 2px solid;
+		cursor: pointer;
 	}
 `;
