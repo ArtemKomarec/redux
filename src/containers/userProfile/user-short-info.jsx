@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const UserShortInfo = ({ user }) => {
 	return (
 		<StyledUserShortInfo className="user-short-info">
-			{console.log(user)}
 			<img className="user-avatar" src={user.avatar} />
 			<h1 className="user-name">{user.name + " " + user.surname}</h1>
 			<p className="user-short-additional">{user.profession}</p>

@@ -4,25 +4,24 @@ export const UserSocials = ({ socials }) => {
 	return (
 		<StyledUserSocials className="user-socials-wrapper">
 			<div className="user-social-container">
-				{console.log(socials)}
 				<p>icon</p>
-				<p>{socials.website}</p>
+				<p className="social-link">{socials.website}</p>
 			</div>
 			<div className="user-social-container">
 				<p>icon</p>
-				<p>{socials.github}</p>
+				<p className="social-link">{socials.github}</p>
 			</div>
 			<div className="user-social-container">
 				<p>icon</p>
-				<p>{socials.twitter}</p>
+				<p className="social-link">{socials.twitter}</p>
 			</div>
 			<div className="user-social-container">
 				<p>icon</p>
-				<p>{socials.instagram}</p>
+				<p className="social-link">{socials.instagram}</p>
 			</div>
 			<div className="user-social-container">
 				<p>icon</p>
-				<p>{socials.facebook}</p>
+				<p className="social-link">{socials.facebook}</p>
 			</div>
 		</StyledUserSocials>
 	);
@@ -48,6 +47,10 @@ const StyledUserSocials = styled.div`
 		border-bottom: 1px solid #acacac;
 		p {
 			padding: 0px 6px;
+		}
+
+		.social-link {
+			color: #6c757d;
 		}
 	}
 `;
