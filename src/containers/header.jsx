@@ -7,7 +7,7 @@ export const Header = () => {
 			<nav className="navigation-bar">
 				<HeaderLink to="/">Home</HeaderLink>
 				<HeaderLink to="/add-user-form">Add user</HeaderLink>
-				<HeaderLink to="/users-list">Users list</HeaderLink>
+				<HeaderLink to="/users">Users list</HeaderLink>
 			</nav>
 
 			<Outlet />

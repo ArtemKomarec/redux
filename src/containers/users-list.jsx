@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
 import {
 	userDeleteAction,
@@ -27,6 +28,7 @@ function UsersList() {
 						<p className="user-friend">Friend: {user.friend ? "yes" : "no"}</p>
 					</div>
 					<div className="btn-field">
+						<Link to={`/users/${user.id}`}>Visit profile</Link>
 						<button
 							className="user-friend-btn"
 							onClick={() => dispatch(userFavouriteAction(index, user.friend))}

@@ -15,7 +15,8 @@ export const AddUserForm = () => {
 		age: "",
 		profession: "",
 		friend: "",
-		avatar: "",
+		avatar:
+			"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
 	});
 	const [userImage, setUserImage] = useState(null);
 	const [imageUrl, setImageUrl] = useState(null);
@@ -24,9 +25,6 @@ export const AddUserForm = () => {
 	const id = useSelector(({ users }) => users.length);
 
 	const handleSubmit = (e) => {
-		console.log(imageUrl);
-		setUser({ ...user, avatar: imageUrl });
-
 		console.log(user);
 		if (
 			user.name === "" ||
@@ -39,7 +37,6 @@ export const AddUserForm = () => {
 			});
 			console.log(user);
 		} else {
-			setUser({ ...user, avatar: imageUrl });
 			dispatch(userAddAction({ user, id }));
 			toast.success("User created !", {
 				position: toast.POSITION.TOP_RIGHT,

@@ -5,6 +5,8 @@ import { AddUserForm } from "./add-user-form";
 import UsersList from "./users-list";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
+import { NotFound } from "./not-found";
+import { UserPage } from "./user-page";
 
 function App() {
 	return (
@@ -12,9 +14,10 @@ function App() {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Header />}>
-						{/* <Route  element={}></Route> */}
 						<Route path="add-user-form" element={<AddUserForm />} />
-						<Route path="users-list" element={<UsersList />} />
+						<Route path="users" element={<UsersList />}></Route>
+						<Route path="/users/:id" element={<UserPage />}></Route>
+						<Route path="*" element={<NotFound />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>
