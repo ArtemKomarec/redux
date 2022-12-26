@@ -5,6 +5,7 @@ import { userAddAction } from "../store/actionCreators/users";
 import { debounce } from "lodash";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Header } from "./header";
 
 const textFields = ["name", "surname", "profession"];
 
@@ -92,58 +93,61 @@ export const AddUserForm = () => {
 	}, [userImage]);
 
 	return (
-		<UserFormWrapper>
-			<h1>Fill user profile</h1>
-			<ToastContainer />
-			<input
-				className="add-user-field"
-				name="name"
-				placeholder="Type user name"
-				type="text"
-				value={user.name}
-				onChange={changeInput}
-			/>
-			<input
-				className="add-user-field"
-				placeholder="Type user surname"
-				name="surname"
-				value={user.surname}
-				onChange={changeInput}
-			/>
-			<input
-				className="add-user-field"
-				placeholder="Type user age"
-				name="age"
-				value={user.age}
-				onChange={changeInput}
-			/>
-			<input
-				className="add-user-field"
-				name="profession"
-				value={user.profession}
-				placeholder="Type user profession"
-				onChange={changeInput}
-			/>
-			<select defaultValue="" onChange={handleSelectFriend}>
-				<option value="true">Yes</option>
-				<option value="">No</option>
-			</select>
-			<label htmlFor="upload-image">
-				<span className="upload-image-btn">Upload image</span>
-			</label>
-			{userImage && imageUrl && <img src={imageUrl} />}
-			<input
-				id="upload-image"
-				type="file"
-				name="avatar"
-				accept="image/"
-				style={{ display: "none" }}
-				onChange={handleUploadImage}
-			/>
-			<button className="add-user-btn" onClick={handleSubmit}>
-				add user
-			</button>
-		</UserFormWrapper>
+		<>
+			<Header />
+			<UserFormWrapper>
+				<h1>Fill user profile</h1>
+				<ToastContainer />
+				<input
+					className="add-user-field"
+					name="name"
+					placeholder="Type user name"
+					type="text"
+					value={user.name}
+					onChange={changeInput}
+				/>
+				<input
+					className="add-user-field"
+					placeholder="Type user surname"
+					name="surname"
+					value={user.surname}
+					onChange={changeInput}
+				/>
+				<input
+					className="add-user-field"
+					placeholder="Type user age"
+					name="age"
+					value={user.age}
+					onChange={changeInput}
+				/>
+				<input
+					className="add-user-field"
+					name="profession"
+					value={user.profession}
+					placeholder="Type user profession"
+					onChange={changeInput}
+				/>
+				<select defaultValue="" onChange={handleSelectFriend}>
+					<option value="true">Yes</option>
+					<option value="">No</option>
+				</select>
+				<label htmlFor="upload-image">
+					<span className="upload-image-btn">Upload image</span>
+				</label>
+				{userImage && imageUrl && <img src={imageUrl} />}
+				<input
+					id="upload-image"
+					type="file"
+					name="avatar"
+					accept="image/"
+					style={{ display: "none" }}
+					onChange={handleUploadImage}
+				/>
+				<button className="add-user-btn" onClick={handleSubmit}>
+					add user
+				</button>
+			</UserFormWrapper>
+		</>
 	);
 };
 

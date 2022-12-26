@@ -1,21 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
+import { Header } from "./header";
 
-export const Header = () => {
+export const Home = () => {
 	return (
-		<HeaderStyled>
-			<nav className="navigation-bar">
-				<HeaderLink to="/">Home</HeaderLink>
-				<HeaderLink to="/add-user-form">Add user</HeaderLink>
-				<HeaderLink to="/users">Users list</HeaderLink>
-			</nav>
-		</HeaderStyled>
+		<div>
+			<Header />
+		</div>
 	);
 };
 
 const HeaderStyled = styled.div`
 	padding: 14px;
-	background-color: #ffffff;
+	background-color: #e2e8f0;
 
 	.navigation-bar {
 		display: flex;

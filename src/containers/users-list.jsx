@@ -6,46 +6,60 @@ import {
 	userDeleteAction,
 	userFavouriteAction,
 } from "../store/actionCreators/users";
+import { Header } from "./header";
 
 function UsersList() {
 	const dispatch = useDispatch();
 	const allUsers = useSelector(({ users }) => users);
 
 	return (
-		<StyledUsersList>
-			{console.log(allUsers)}
-			{allUsers.map((user, index) => (
-				<div className="users-list-wrapper" key={user.name + index}>
-					<div className="users-list-container">
-						<div className="image-container">
-							<img
-								className="user-avatar"
-								src={user.avatar}
-								alt={user.name + "avatar"}
-							/>
+		<>
+			<Header />
+			<StyledUsersList>
+				{console.log(allUsers)}
+				{allUsers.map((user, index) => (
+					<div className="users-list-wrapper" key={user.name + index}>
+						<div className="users-list-container">
+							<div className="image-container">
+								<img
+									className="user-avatar"
+									src={user.avatar}
+									alt={user.name + "avatar"}
+								/>
+							</div>
+							<h4 className="user-name">{user.name}</h4>
+							<p className="user-friend">
+								Friend: {user.friend ? "yes" : "no"}
+							</p>
 						</div>
-						<h4 className="user-name">{user.name}</h4>
-						<p className="user-friend">Friend: {user.friend ? "yes" : "no"}</p>
-					</div>
-					<div className="btn-field">
-						<Link to={`/users/${user.id}`}>Visit profile</Link>
-						<button
-							className="user-friend-btn"
-							onClick={() => dispatch(userFavouriteAction(index, user.friend))}
-						>
-							{user.friend ? "remove friend" : "make friend"}
-						</button>
+						<div className="btn-field">
+							<Link
+								className="visit-profile-link"
+								to={`/users/${user.id}`}
+								state={user}
+							>
+								Visit profile
+							</Link>
+							<button
+								className="user-friend-btn"
+								onClick={() =>
+									dispatch(userFavouriteAction(index, user.friend))
+								}
+							>
+								{user.friend ? "remove friend" : "make friend"}
+							</button>
 
-						<button
-							className="delete-user-btn"
-							onClick={() => dispatch(userDeleteAction(index))}
-						>
-							Delete
-						</button>
+							<button
+								className="delete-user-btn"
+								onClick={() => dispatch(userDeleteAction(index))}
+							>
+								Delete
+							</button>
+						</div>
 					</div>
-				</div>
-			))}
-		</StyledUsersList>
+				))}
+			</StyledUsersList>
+		</>
 	);
 }
 
@@ -99,6 +113,12 @@ const StyledUsersList = styled.div`
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
+	}
+
+	.visit-profile-link {
+		padding: 10px 8px;
+		text-decoration: none;
+		border: 2px solid #c3b7b7;
 	}
 
 	.user-friend-btn {
