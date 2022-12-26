@@ -21,6 +21,7 @@ export const users = (state = initialState, action) => {
 				surname: action.user.user.surname,
 				age: action.user.user.age,
 				profession: action.user.user.profession,
+				friend: action.user.user.friend ? true : false,
 			};
 			newState.push(newUser);
 			return newState;

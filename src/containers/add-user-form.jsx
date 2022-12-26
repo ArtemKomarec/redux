@@ -14,6 +14,7 @@ export const AddUserForm = () => {
 		surname: "",
 		age: "",
 		profession: "",
+		friend: "",
 	});
 
 	const dispatch = useDispatch();
@@ -35,7 +36,13 @@ export const AddUserForm = () => {
 			toast.success("User created !", {
 				position: toast.POSITION.TOP_RIGHT,
 			});
-			setUser({ name: "", surname: "", age: "", profession: "" });
+			setUser({
+				name: "",
+				surname: "",
+				age: "",
+				profession: "",
+				friend: "",
+			});
 		}
 	};
 
@@ -48,19 +55,20 @@ export const AddUserForm = () => {
 				setUser({ ...user, [e.target.name]: e.target.value });
 			}
 		} else if (e.target.name === "age") {
-			if (/^(1[89]|[2-9]\d)$/gm) {
+			if (e.target.value === "") {
 				setUser({ ...user, [e.target.name]: e.target.value });
+			}
+			if (parseInt(e.target.value)) {
+				setUser({ ...user, [e.target.name]: e.target.value });
+			} else {
+				toast.error("Should write only numbers");
 			}
 		}
 	};
 
-	// const changeInput = debounce(changeInput, 300);
-
-	// useEffect(() => {
-	// 	return () => {
-	// 		changeInput.cancel();
-	// 	};
-	// }, [changeInput]);
+	const handleSelectFriend = (e) => {
+		setUser({ ...user, friend: e.target.value });
+	};
 
 	return (
 		<UserFormWrapper>
@@ -95,12 +103,10 @@ export const AddUserForm = () => {
 				placeholder="Type user profession"
 				onChange={changeInput}
 			/>
-			{/* <input
-				className="add-user-field"
-				placeholder="Friend or not?"
-				value={user.name}
-				onChange={(e) => setUser({ name: e.target.value })}
-			/> */}
+			<select defaultValue="" onChange={handleSelectFriend}>
+				<option value="true">Yes</option>
+				<option value="">No</option>
+			</select>
 			<button className="add-user-btn" onClick={handleSubmit}>
 				add user
 			</button>

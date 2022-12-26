@@ -16,6 +16,13 @@ function UsersList() {
 			{allUsers.map((user, index) => (
 				<div className="users-list-wrapper" key={user.name + index}>
 					<div className="users-list-container">
+						<div className="image-container">
+							<img
+								className="user-avatar"
+								src={user.avatar}
+								alt={user.name + "avatar"}
+							/>
+						</div>
 						<h4 className="user-name">{user.name}</h4>
 						<p className="user-friend">Friend: {user.friend ? "yes" : "no"}</p>
 					</div>
@@ -47,15 +54,34 @@ const StyledUsersList = styled.div`
 	border: 2px solid #c3b7b7;
 
 	.users-list-wrapper {
+		padding: 16px 0px;
 		display: flex;
 		flex-direction: row;
 		gap: 40px;
 		align-items: center;
 		justify-content: space-between;
+		border-bottom: 2px solid #c3b7b7;
+		&:hover {
+			background-color: #c3b7b7;
+			cursor: pointer;
+		}
 	}
 
 	.users-list-container {
 		width: 200px;
+	}
+
+	.image-container {
+		height: 70px;
+		width: 70px;
+		border: 2px solid black;
+		border-radius: 50%;
+	}
+
+	.user-avatar {
+		max-width: 100%;
+		max-height: 100%;
+		border-radius: 50%;
 	}
 
 	.user-name {
