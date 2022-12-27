@@ -6,7 +6,8 @@ import { debounce } from "lodash";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Header } from "../header";
-import { AddUserAvatar } from "./add-user-avatar";
+import { UserMainInfo } from "./user-main-info";
+import { UserAdditionalInfo } from "./user-additional-info";
 
 const textFields = ["name", "surname", "profession", "city"];
 
@@ -14,9 +15,9 @@ export const AddUserForm = () => {
 	const [user, setUser] = useState({
 		name: "",
 		surname: "",
-		age: "",
+		email: "",
+		phone: "",
 		profession: "",
-		friend: "",
 		avatar:
 			"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
 		city: "",
@@ -26,13 +27,14 @@ export const AddUserForm = () => {
 
 	const dispatch = useDispatch();
 	const id = useSelector(({ users }) => users.length);
+	console.log(user);
 
 	const handleSubmit = () => {
 		console.log(user);
 		if (
 			user.name === "" ||
 			user.surname === "" ||
-			user.age === "" ||
+			user.email === "" ||
 			user.profession === "" ||
 			user.city === ""
 		) {
@@ -48,9 +50,9 @@ export const AddUserForm = () => {
 			setUser({
 				name: "",
 				surname: "",
-				age: "",
+				email: "",
+				phone: "",
 				profession: "",
-				friend: "",
 				avatar: "",
 				city: "",
 			});
@@ -81,27 +83,12 @@ export const AddUserForm = () => {
 		setUser({ ...user, friend: e.target.value });
 	};
 
-	// const handleUploadImage = (e) => {
-	// 	setUserImage(e.target.files[0]);
-	// };
-
-	// useEffect(() => {
-	// 	if (userImage) {
-	// 		setImageUrl((image) => {
-	// 			image = URL.createObjectURL(userImage);
-	// 			setUser({ ...user, avatar: image });
-	// 			return image;
-	// 		});
-	// 		console.log(imageUrl);
-	// 	}
-	// }, [userImage]);
-
 	return (
 		<>
 			<Header />
 			<UserFormWrapper>
-				<AddUserAvatar user={user} />
-				<div className="new-user-right-column"></div>
+				<UserMainInfo user={user} setUser={setUser} />
+				<UserAdditionalInfo user={user} setUser={setUser} />
 			</UserFormWrapper>
 		</>
 	);
@@ -113,22 +100,4 @@ const UserFormWrapper = styled.div`
 	flex-direction: row;
 	justify-content: center;
 	gap: 20px;
-
-	.new-user-left-column {
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
-		border-radius: 6px;
-		box-shadow: 0 4px 10px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
-		background-color: white;
-	}
-
-	.new-user-right-column {
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
-		border-radius: 6px;
-		box-shadow: 0 4px 10px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
-		background-color: white;
-	}
 `;
