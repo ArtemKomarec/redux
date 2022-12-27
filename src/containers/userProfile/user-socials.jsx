@@ -3,26 +3,36 @@ import styled from "styled-components";
 export const UserSocials = ({ socials }) => {
 	return (
 		<StyledUserSocials className="user-socials-wrapper">
-			<div className="user-social-container">
-				<p>icon</p>
-				<p className="social-link">{socials.website}</p>
-			</div>
-			<div className="user-social-container">
-				<p>icon</p>
-				<p className="social-link">{socials.github}</p>
-			</div>
-			<div className="user-social-container">
-				<p>icon</p>
-				<p className="social-link">{socials.twitter}</p>
-			</div>
-			<div className="user-social-container">
-				<p>icon</p>
-				<p className="social-link">{socials.instagram}</p>
-			</div>
-			<div className="user-social-container">
-				<p>icon</p>
-				<p className="social-link">{socials.facebook}</p>
-			</div>
+			{socials.website && (
+				<div className="user-social-container">
+					<p>icon</p>
+					<p className="social-link">{socials.website}</p>
+				</div>
+			)}
+			{socials.github && (
+				<div className="user-social-container">
+					<p>icon</p>
+					<p className="social-link">{socials.github}</p>
+				</div>
+			)}
+			{socials.twitter && (
+				<div className="user-social-container">
+					<p>icon</p>
+					<p className="social-link">{socials.twitter}</p>
+				</div>
+			)}
+			{socials.instagram && (
+				<div className="user-social-container">
+					<p>icon</p>
+					<p className="social-link">{socials.instagram}</p>
+				</div>
+			)}
+			{socials.facebook && (
+				<div className="user-social-container">
+					<p>icon</p>
+					<p className="social-link">{socials.facebook}</p>
+				</div>
+			)}
 		</StyledUserSocials>
 	);
 };

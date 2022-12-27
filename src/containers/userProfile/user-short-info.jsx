@@ -6,7 +6,7 @@ export const UserShortInfo = ({ user }) => {
 			<img className="user-avatar" src={user.avatar} />
 			<h1 className="user-name">{user.name + " " + user.surname}</h1>
 			<p className="user-short-additional">{user.profession}</p>
-			<p className="user-short-additional">"Bay Area, San Francisco, CA",</p>
+			<p className="user-short-additional">{user.city}</p>
 		</StyledUserShortInfo>
 	);
 };

@@ -19,10 +19,12 @@ export const UserFullInfo = ({ user }) => {
 				<p>Profession</p>
 				<p className="social-link">{user.profession}</p>
 			</div>
-			<div className="user-info-container">
-				<p>Address</p>
-				<p className="social-link">{user.city}</p>
-			</div>
+			{user.city && (
+				<div className="user-info-container">
+					<p>Address</p>
+					<p className="social-link">{user.city}</p>
+				</div>
+			)}
 			<button className="user-edit-btn">Edit</button>
 		</StyledUserFullInfo>
 	);
@@ -62,5 +64,6 @@ const StyledUserFullInfo = styled.div`
 		background-color: darkcyan;
 		font-family: 500;
 		letter-spacing: 0.6px;
+		cursor: pointer;
 	}
 `;

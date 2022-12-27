@@ -7,7 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Header } from "./header";
 
-const textFields = ["name", "surname", "profession"];
+const textFields = ["name", "surname", "profession", "city"];
 
 export const AddUserForm = () => {
 	const [user, setUser] = useState({
@@ -18,6 +18,7 @@ export const AddUserForm = () => {
 		friend: "",
 		avatar:
 			"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
+		city: "",
 	});
 	const [userImage, setUserImage] = useState(null);
 	const [imageUrl, setImageUrl] = useState(null);
@@ -25,13 +26,14 @@ export const AddUserForm = () => {
 	const dispatch = useDispatch();
 	const id = useSelector(({ users }) => users.length);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = () => {
 		console.log(user);
 		if (
 			user.name === "" ||
 			user.surname === "" ||
 			user.age === "" ||
-			user.profession === ""
+			user.profession === "" ||
+			user.city === ""
 		) {
 			toast.error("Fill all fields !", {
 				position: toast.POSITION.TOP_RIGHT,
@@ -49,6 +51,7 @@ export const AddUserForm = () => {
 				profession: "",
 				friend: "",
 				avatar: "",
+				city: "",
 			});
 		}
 	};
@@ -127,6 +130,13 @@ export const AddUserForm = () => {
 					placeholder="Type user profession"
 					onChange={changeInput}
 				/>
+				<input
+					className="add-user-field"
+					placeholder="Type user city"
+					name="city"
+					value={user.city}
+					onChange={changeInput}
+				/>
 				<select defaultValue="" onChange={handleSelectFriend}>
 					<option value="true">Yes</option>
 					<option value="">No</option>
@@ -134,7 +144,6 @@ export const AddUserForm = () => {
 				<label htmlFor="upload-image">
 					<span className="upload-image-btn">Upload image</span>
 				</label>
-				{userImage && imageUrl && <img src={imageUrl} />}
 				<input
 					id="upload-image"
 					type="file"

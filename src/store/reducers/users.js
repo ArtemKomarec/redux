@@ -23,6 +23,7 @@ export const users = (state = initialState, action) => {
 				profession: action.user.user.profession,
 				friend: action.user.user.friend ? true : false,
 				avatar: action.user.user.avatar,
+				city: action.user.user.city,
 			};
 			newState.push(newUser);
 			return newState;

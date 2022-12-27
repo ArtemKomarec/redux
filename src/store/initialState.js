@@ -16,6 +16,12 @@ export const initialState = [
 			instagram: "Instagram",
 			facebook: "Facebook",
 		},
+		skills: {
+			experience: 20,
+			english: "b1",
+			communication: 5,
+			professionSkills: 8,
+		},
 	},
 	{
 		id: 1,
@@ -33,6 +39,12 @@ export const initialState = [
 			twitter: "@bootdey",
 			instagram: "Instagram",
 			facebook: "Facebook",
+		},
+		skills: {
+			experience: 20,
+			english: "b1",
+			communication: 5,
+			professionSkills: 8,
 		},
 	},
 ];
