@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const UserMainInfo = ({ user, setUser }) => {
 	const [userImage, setUserImage] = useState(null);
@@ -9,7 +10,6 @@ export const UserMainInfo = ({ user, setUser }) => {
 	const textFields = ["name", "surname", "email", "profession", "city"];
 
 	const changeInput = (e) => {
-		console.log(e.target.name);
 		if (e.target.value === "" && textFields.includes(e.target.name)) {
 			setUser({ ...user, [e.target.name]: e.target.value });
 		}
@@ -24,6 +24,7 @@ export const UserMainInfo = ({ user, setUser }) => {
 			if (parseInt(e.target.value)) {
 				setUser({ ...user, [e.target.name]: e.target.value });
 			} else {
+				console.log("toasts");
 				toast.error("Should write only numbers");
 			}
 		}
@@ -46,6 +47,7 @@ export const UserMainInfo = ({ user, setUser }) => {
 
 	return (
 		<StyledNewUserAvatar>
+			<ToastContainer />
 			<img className="new-user-avatar" src={user.avatar} />
 			<label htmlFor="upload-image">
 				<span className="new-user-avatar-btn">Upload image</span>
@@ -58,7 +60,6 @@ export const UserMainInfo = ({ user, setUser }) => {
 				style={{ display: "none" }}
 				onChange={handleUploadImage}
 			/>
-			{/* <button className="new-user-avatar-btn">Remove profile picture</button> */}
 			<span className="divider"></span>
 			<div className="new-user-field-wrapper">
 				<div className="new-user-field-container">
@@ -163,6 +164,11 @@ const StyledNewUserAvatar = styled.div`
 		cursor: pointer;
 	}
 
+	.new-user-avatar-btn:hover {
+		background-color: white;
+		color: #465374;
+	}
+
 	.divider {
 		width: 100%;
 		margin-top: 20px;
@@ -196,5 +202,9 @@ const StyledNewUserAvatar = styled.div`
 		align-self: center;
 		border: 1px solid #c3b7b7;
 		border-radius: 4px;
+	}
+
+	.new-user-field:focus-visible {
+		border: 2px solid #465374;
 	}
 `;

@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { userAddAction } from "../../store/actionCreators/users";
 
 export const UserAdditionalInfo = ({ user, setUser }) => {
@@ -8,12 +9,12 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 	const id = useSelector(({ users }) => users.length);
 
 	const handleSubmit = () => {
-		console.log(user);
 		if (
 			user.name === "" ||
 			user.surname === "" ||
 			user.email === "" ||
 			user.profession === "" ||
+			user.phone === "" ||
 			user.city === ""
 		) {
 			toast.error("Fill all fields !", {
@@ -31,14 +32,16 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 				email: "",
 				phone: "",
 				profession: "",
-				avatar: "",
+				avatar:
+					"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
 				city: "",
 			});
 		}
 	};
 	return (
 		<StyledAdditionalInfo>
-			{console.log(16.6666666666666666 * 6)}
+			<ToastContainer />
+			{/* {console.log(16.6666666666666666 * 6)} */}
 			<h1 className="user-additional-header">Social links</h1>
 			<div className="social-links-wrapper">
 				<div className="social-link-container">
@@ -157,7 +160,7 @@ const StyledAdditionalInfo = styled.div`
 
 	.divider {
 		width: 100%;
-		margin-top: 40px;
+		margin-top: 48px;
 		height: 2px;
 		background-color: #465374;
 	}
@@ -180,5 +183,10 @@ const StyledAdditionalInfo = styled.div`
 		font-family: 500;
 		letter-spacing: 0.6px;
 		cursor: pointer;
+	}
+	.create-user-btn:hover {
+		color: #465374;
+		background-color: white;
+		font-weight: 500;
 	}
 `;
