@@ -9,11 +9,11 @@ export const UserFullInfo = ({ user }) => {
 			</div>
 			<div className="user-info-container">
 				<p>Email</p>
-				<p className="social-link">{user.name}</p>
+				<p className="social-link">{user.email}</p>
 			</div>
 			<div className="user-info-container">
 				<p>Phone</p>
-				<p className="social-link">{user.name}</p>
+				<p className="social-link">{user.phone}</p>
 			</div>
 			<div className="user-info-container">
 				<p>Profession</p>

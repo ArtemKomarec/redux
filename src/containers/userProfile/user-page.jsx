@@ -11,6 +11,7 @@ export const UserPage = () => {
 	return (
 		<>
 			<Header />
+			{console.log(user)}
 			<StyledUserPage>
 				<div className="left-column-wrap">
 					<UserShortInfo user={user.state} />

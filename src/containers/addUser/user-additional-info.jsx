@@ -20,7 +20,6 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 			toast.error("Fill all fields !", {
 				position: toast.POSITION.TOP_RIGHT,
 			});
-			console.log(user);
 		} else {
 			dispatch(userAddAction({ user, id }));
 			toast.success("User created !", {
@@ -35,6 +34,8 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 				avatar:
 					"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
 				city: "",
+				skills: {},
+				socials: {},
 			});
 		}
 	};
@@ -156,6 +157,11 @@ const StyledAdditionalInfo = styled.div`
 		align-self: center;
 		border: 1px solid #c3b7b7;
 		border-radius: 4px;
+	}
+
+	.new-user-field:focus {
+		border: 1px solid #064f87cc;
+		outline: #064f87cc;
 	}
 
 	.divider {

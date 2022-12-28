@@ -24,7 +24,6 @@ export const UserMainInfo = ({ user, setUser }) => {
 			if (parseInt(e.target.value)) {
 				setUser({ ...user, [e.target.name]: e.target.value });
 			} else {
-				console.log("toasts");
 				toast.error("Should write only numbers");
 			}
 		}
@@ -204,7 +203,8 @@ const StyledNewUserAvatar = styled.div`
 		border-radius: 4px;
 	}
 
-	.new-user-field:focus-visible {
-		border: 2px solid #465374;
+	.new-user-field:focus {
+		border: 1px solid #064f87cc;
+		outline: #064f87cc;
 	}
 `;

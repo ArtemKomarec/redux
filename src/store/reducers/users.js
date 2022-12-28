@@ -15,15 +15,19 @@ export const users = (state = initialState, action) => {
 		}
 		case USER_ADD_ACTION: {
 			const [...newState] = state;
+			console.log(action);
 			const newUser = {
 				id: action.user.id,
 				name: action.user.user.name,
 				surname: action.user.user.surname,
 				age: action.user.user.age,
 				profession: action.user.user.profession,
-				friend: action.user.user.friend ? true : false,
+				email: action.user.user.email,
+				phone: action.user.user.phone,
 				avatar: action.user.user.avatar,
 				city: action.user.user.city,
+				skills: action.user.user.skills,
+				socials: action.user.user.socials,
 			};
 			newState.push(newUser);
 			return newState;
