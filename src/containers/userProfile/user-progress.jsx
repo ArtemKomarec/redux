@@ -1,30 +1,38 @@
 import styled from "styled-components";
 
-export const UserProgress = () => {
+export const UserProgress = ({ user }) => {
+	const data = ["a", "b"];
 	return (
 		<StyledUserProgress>
+			{console.log(user)}
 			<div className="user-progress-container">
 				<span>Experience</span>
 				<div className="progress-bar-wrapper">
-					<div className="progress-bar-result"></div>
+					<ProgressBarResult
+						progress={user.skills.experience}
+					></ProgressBarResult>
 				</div>
 			</div>
 			<div className="user-progress-container">
 				<span>English</span>
 				<div className="progress-bar-wrapper">
-					<div className="progress-bar-result"></div>
+					<ProgressBarResult progress={user.skills.english}></ProgressBarResult>
 				</div>
 			</div>
 			<div className="user-progress-container">
 				<span>Communication</span>
 				<div className="progress-bar-wrapper">
-					<div className="progress-bar-result"></div>
+					<ProgressBarResult
+						progress={user.skills.communication}
+					></ProgressBarResult>
 				</div>
 			</div>
 			<div className="user-progress-container">
 				<span>Professinal skills</span>
 				<div className="progress-bar-wrapper">
-					<div className="progress-bar-result"></div>
+					<ProgressBarResult
+						progress={user.skills.professionSkills}
+					></ProgressBarResult>
 				</div>
 			</div>
 		</StyledUserProgress>
@@ -53,14 +61,15 @@ const StyledUserProgress = styled.div`
 		background-color: #e9ecef;
 	}
 
-	.progress-bar-result {
-		width: 50%;
-		height: 6px;
-		border-radius: 4px;
-		background-color: #007bff;
-	}
-
 	span {
 		font-size: 13px;
 	}
+`;
+
+const ProgressBarResult = styled.div`
+	width: 0%;
+	width: ${(props) => props.progress}%;
+	height: 6px;
+	border-radius: 4px;
+	background-color: #007bff;
 `;

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Facebook } from "../../assets/icons/facebook";
 import { Github } from "../../assets/icons/github";
 import { Instagram } from "../../assets/icons/instagram";
-import { Twitter } from "../../assets/icons/twitter";
 import { Website } from "../../assets/icons/website";
 
 export const UserSocials = ({ socials }) => {

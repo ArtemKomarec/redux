@@ -19,7 +19,7 @@ export const UserPage = () => {
 				</div>
 				<div className="right-column-wrap">
 					<UserFullInfo user={user.state}></UserFullInfo>
-					<UserProgress />
+					<UserProgress user={user.state} />
 				</div>
 			</StyledUserPage>
 		</>
@@ -37,7 +37,6 @@ const StyledUserPage = styled.div`
 	.left-column-wrap {
 		max-width: 350px;
 		width: 100%;
-		/* padding: 40px 0px; */
 		display: flex;
 		flex-direction: column;
 		gap: 16px;
@@ -46,7 +45,6 @@ const StyledUserPage = styled.div`
 	.right-column-wrap {
 		max-width: 730px;
 		width: 100%;
-		/* padding: 40px 0px; */
 		display: flex;
 		flex-direction: column;
 		gap: 16px;

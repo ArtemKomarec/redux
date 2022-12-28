@@ -42,7 +42,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 		}
 	};
 
-	const changeInput = (e) => {
+	const changeSocials = (e) => {
 		if (e.target.value === "" && textFields.includes(e.target.name)) {
 			setUser({ ...user, socials: { [e.target.name]: e.target.value } });
 		}
@@ -54,6 +54,26 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 				});
 			}
 		}
+	};
+
+	const changeSkills = (e) => {
+		setUser({
+			...user,
+			skills: {
+				...user.skills,
+				[e.target.name]: e.target.value,
+			},
+		});
+	};
+
+	const selectEnglishLvl = (e) => {
+		setUser({
+			...user,
+			skills: {
+				...user.skills,
+				english: e.target.value,
+			},
+		});
 	};
 
 	return (
@@ -68,7 +88,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 						className="new-user-field"
 						name="website"
 						placeholder="Enter your website link"
-						onChange={changeInput}
+						onChange={changeSocials}
 					/>
 				</div>
 				<div className="social-link-container">
@@ -77,7 +97,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 						className="new-user-field"
 						name="github"
 						placeholder="Enter your gihtub link"
-						onChange={changeInput}
+						onChange={changeSocials}
 					/>
 				</div>
 				<div className="social-link-container">
@@ -86,7 +106,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 						className="new-user-field"
 						name="facebook"
 						placeholder="Enter your facebook link"
-						onChange={changeInput}
+						onChange={changeSocials}
 					/>
 				</div>
 				<div className="social-link-container">
@@ -95,7 +115,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 						className="new-user-field"
 						name="instagram"
 						placeholder="Enter your instagram link"
-						onChange={changeInput}
+						onChange={changeSocials}
 					/>
 				</div>
 			</div>
@@ -106,32 +126,42 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 					<span> Experience in years</span>
 					<input
 						className="new-user-field"
+						name="experience"
 						placeholder="Enter value between 1 and 10"
-					/>
-				</div>
-				<div className="social-link-container">
-					<span>English </span>
-					<input
-						className="new-user-field"
-						placeholder="Enter value between 1 and 10"
+						onChange={changeSkills}
 					/>
 				</div>
 				<div className="social-link-container">
 					<span>Communication </span>
-					<select className="select-english-lvl" defaultValue="select value">
-						<option value="">A1</option>
-						<option value="">A2</option>
-						<option value="">B1</option>
-						<option value="">B2</option>
-						<option value="">C1</option>
-						<option value="">C2</option>
+					<input
+						className="new-user-field"
+						name="communication"
+						placeholder="Enter value between 1 and 10"
+						onChange={changeSkills}
+					/>
+				</div>
+				<div className="social-link-container">
+					<span>English </span>
+					<select
+						className="select-english-lvl"
+						defaultValue="select value"
+						onChange={selectEnglishLvl}
+					>
+						<option value="17">A1</option>
+						<option value="34">A2</option>
+						<option value="51">B1</option>
+						<option value="68">B2</option>
+						<option value="85">C1</option>
+						<option value="100">C2</option>
 					</select>
 				</div>
 				<div className="social-link-container">
 					<span>Professional skills </span>
 					<input
 						className="new-user-field"
+						name="professionSkills"
 						placeholder="Enter value between 1 and 10"
+						onChange={changeSkills}
 					/>
 				</div>
 			</div>

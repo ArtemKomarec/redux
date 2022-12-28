@@ -17,10 +17,10 @@ export const initialState = [
 			facebook: "Facebook",
 		},
 		skills: {
-			experience: 20,
+			experience: "20",
 			english: "b1",
-			communication: 5,
-			professionSkills: 8,
+			communication: "5",
+			professionSkills: "8",
 		},
 	},
 	{
@@ -41,10 +41,10 @@ export const initialState = [
 			facebook: "Facebook",
 		},
 		skills: {
-			experience: 20,
+			experience: "20",
 			english: "b1",
-			communication: 5,
-			professionSkills: 8,
+			communication: "5",
+			professionSkills: "8",
 		},
 	},
 ];
