@@ -12,41 +12,58 @@ export const UserSocials = ({ socials }) => {
 				<span>
 					<Website /> Website
 				</span>
-				<p className="social-link">
+				<a
+					target="_blank"
+					href={socials.website}
+					className="social-link"
+					style={socials.website ? { color: "#055dbb" } : { color: " #6c757d" }}
+				>
 					{socials.website ? `${socials.website}` : "No website"}
-				</p>
+				</a>
 			</div>
 			<div className="user-social-container">
 				<span>
 					<Github /> Github
 				</span>
-				<p className="social-link">
+				<a
+					target="_blank"
+					href={socials.github}
+					className="social-link"
+					style={socials.github ? { color: "#055dbb" } : { color: " #6c757d" }}
+				>
 					{socials.github ? `${socials.github}` : "No github"}
-				</p>
+				</a>
 			</div>
-			<div className="user-social-container">
-				<span>
-					<Twitter /> Twitter
-				</span>
-				<p className="social-link">
-					{socials.twitter ? `${socials.twitter}` : "No twitter"}
-				</p>
-			</div>
+
 			<div className="user-social-container">
 				<span>
 					<Instagram /> Instagram
 				</span>
-				<p className="social-link">
+				<a
+					target="_blank"
+					href={socials.instagram}
+					className="social-link"
+					style={
+						socials.instagram ? { color: "#055dbb" } : { color: " #6c757d" }
+					}
+				>
 					{socials.instagram ? `${socials.instagram}` : "No instagram"}
-				</p>
+				</a>
 			</div>
 			<div className="user-social-container">
 				<span>
-					<Facebook /> Instagram
+					<Facebook /> Facebook
 				</span>
-				<p className="social-link">
+				<a
+					target="_blank"
+					href={socials.facebook}
+					className="social-link"
+					style={
+						socials.facebook ? { color: "#055dbb" } : { color: " #6c757d" }
+					}
+				>
 					{socials.facebook ? `${socials.facebook}` : "No facebook"}
-				</p>
+				</a>
 			</div>
 		</StyledUserSocials>
 	);
@@ -79,12 +96,14 @@ const StyledUserSocials = styled.div`
 			padding: 0px 8px;
 		}
 
-		p {
+		a {
+			margin: 16px 0px;
 			padding: 0px 8px;
 		}
 
 		.social-link {
-			color: #6c757d;
+			text-decoration: none;
+			word-break: break-all;
 		}
 	}
 `;

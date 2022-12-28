@@ -14,8 +14,19 @@ export const AddUserForm = () => {
 		avatar:
 			"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
 		city: "",
-		skills: {},
-		socials: {},
+		socials: {
+			website: "",
+			github: "",
+			twitter: "",
+			instagram: "",
+			facebook: "",
+		},
+		skills: {
+			experience: "",
+			english: "",
+			communication: "",
+			professionSkills: "",
+		},
 	});
 
 	return (

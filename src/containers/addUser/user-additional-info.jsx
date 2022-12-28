@@ -7,8 +7,10 @@ import { userAddAction } from "../../store/actionCreators/users";
 export const UserAdditionalInfo = ({ user, setUser }) => {
 	const dispatch = useDispatch();
 	const id = useSelector(({ users }) => users.length);
+	const textFields = ["website", "github", "instagram", "facebook"];
 
 	const handleSubmit = () => {
+		console.log(user);
 		if (
 			user.name === "" ||
 			user.surname === "" ||
@@ -39,6 +41,21 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 			});
 		}
 	};
+
+	const changeInput = (e) => {
+		if (e.target.value === "" && textFields.includes(e.target.name)) {
+			setUser({ ...user, socials: { [e.target.name]: e.target.value } });
+		}
+		if (textFields.includes(e.target.name)) {
+			if (/[a-zA-Z]+/g.test(e.target.value)) {
+				setUser({
+					...user,
+					socials: { ...user.socials, [e.target.name]: e.target.value },
+				});
+			}
+		}
+	};
+
 	return (
 		<StyledAdditionalInfo>
 			<ToastContainer />
@@ -49,28 +66,36 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 					<span> Website</span>
 					<input
 						className="new-user-field"
+						name="website"
 						placeholder="Enter your website link"
+						onChange={changeInput}
 					/>
 				</div>
 				<div className="social-link-container">
 					<span>Github </span>
 					<input
 						className="new-user-field"
+						name="github"
 						placeholder="Enter your gihtub link"
+						onChange={changeInput}
 					/>
 				</div>
 				<div className="social-link-container">
 					<span>Facebook </span>
 					<input
 						className="new-user-field"
+						name="facebook"
 						placeholder="Enter your facebook link"
+						onChange={changeInput}
 					/>
 				</div>
 				<div className="social-link-container">
 					<span>Instagram </span>
 					<input
-						placeholder="Enter your instagram link"
 						className="new-user-field"
+						name="instagram"
+						placeholder="Enter your instagram link"
+						onChange={changeInput}
 					/>
 				</div>
 			</div>

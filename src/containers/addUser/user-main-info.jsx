@@ -5,8 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const UserMainInfo = ({ user, setUser }) => {
 	const [userImage, setUserImage] = useState(null);
-	const [imageUrl, setImageUrl] = useState(null);
-
 	const textFields = ["name", "surname", "email", "profession", "city"];
 
 	const changeInput = (e) => {
@@ -35,19 +33,19 @@ export const UserMainInfo = ({ user, setUser }) => {
 
 	useEffect(() => {
 		if (userImage) {
-			setImageUrl((image) => {
-				image = URL.createObjectURL(userImage);
-				setUser({ ...user, avatar: image });
-				return image;
-			});
-			console.log(imageUrl);
+			const image = URL.createObjectURL(userImage);
+			setUser({ ...user, avatar: image });
 		}
 	}, [userImage]);
 
 	return (
 		<StyledNewUserAvatar>
 			<ToastContainer />
-			<img className="new-user-avatar" src={user.avatar} />
+			<img
+				className="new-user-avatar"
+				src={user.avatar}
+				alt={user.name + "avatar"}
+			/>
 			<label htmlFor="upload-image">
 				<span className="new-user-avatar-btn">Upload image</span>
 			</label>
