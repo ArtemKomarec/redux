@@ -8,68 +8,28 @@ export const UserSocials = ({ socials }) => {
 	const icons = [<Website />, <Github />, <Instagram />, <Facebook />];
 	return (
 		<StyledUserSocials className="user-socials-wrapper">
-			{console.log(socials)}
-			<div className="user-social-container">
-				<span>
-					<Website /> Website
-				</span>
-				<a
-					target="_blank"
-					href={socials[0].website}
-					className="social-link"
-					style={
-						socials[0].website ? { color: "#055dbb" } : { color: " #6c757d" }
-					}
+			{socials.map((currentSocial, index) => (
+				<div
+					className="user-social-container"
+					key={currentSocial.name + currentSocial.link}
 				>
-					{socials[0].website ? `${socials[0].website}` : "No website"}
-				</a>
-			</div>
-			<div className="user-social-container">
-				<span>
-					<Github /> Github
-				</span>
-				<a
-					target="_blank"
-					href={socials[1].github}
-					className="social-link"
-					style={
-						socials[1].github ? { color: "#055dbb" } : { color: " #6c757d" }
-					}
-				>
-					{socials[1].github ? `${socials[1].github}` : "No github"}
-				</a>
-			</div>
-
-			<div className="user-social-container">
-				<span>
-					<Instagram /> Instagram
-				</span>
-				<a
-					target="_blank"
-					href={socials[2].instagram}
-					className="social-link"
-					style={
-						socials[2].instagram ? { color: "#055dbb" } : { color: " #6c757d" }
-					}
-				>
-					{socials[2].instagram ? `${socials[2].instagram}` : "No instagram"}
-				</a>
-			</div>
-			<div className="user-social-container">
-				<span>
-					<Facebook /> Facebook
-				</span>
-				<a
-					target="_blank"
-					href={socials[3].facebook}
-					className="social-link"
-					style={
-						socials[3].facebook ? { color: "#055dbb" } : { color: " #6c757d" }
-					}
-				>
-					{socials[3].facebook ? `${socials[3].facebook}` : "No facebook"}
-				</a>
-			</div>
+					<span>
+						{icons[index]}
+						{currentSocial.name}
+					</span>
+					<a
+						target="_blank"
+						href={currentSocial.link}
+						rel="noopener noreferrer"
+						className="social-link"
+						style={
+							currentSocial.link ? { color: "#055dbb" } : { color: " #6c757d" }
+						}
+					>
+						{currentSocial.link ? `${currentSocial.link}` : "No website"}
+					</a>
+				</div>
+			))}
 		</StyledUserSocials>
 	);
 };
@@ -102,6 +62,7 @@ const StyledUserSocials = styled.div`
 		a {
 			margin: 16px 0px;
 			padding: 0px 8px;
+			text-align: right;
 		}
 
 		.social-link {

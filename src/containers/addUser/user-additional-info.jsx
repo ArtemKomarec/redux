@@ -8,7 +8,6 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 	const dispatch = useDispatch();
 	const id = useSelector(({ users }) => users.length);
 	const textFields = ["website", "github", "instagram", "facebook"];
-	const numberFields = ["experience", "communication", "professionSkills"];
 
 	const handleSubmit = () => {
 		console.log(user);
@@ -61,7 +60,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 							const nSocials = [...socials];
 							nSocials[index] = {
 								...nSocials[index],
-								[e.target.name]: e.target.value,
+								link: e.target.value,
 							};
 							return nSocials;
 						})(),

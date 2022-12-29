@@ -10,11 +10,10 @@ export const initialState = [
 		avatar:
 			"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
 		socials: [
-			{ name: "website", website: "https://bootdey.com" },
-			{ name: "github", github: "bootdey" },
-			{ name: "twitter", twitter: "@bootdey" },
-			{ name: "instagram", instagram: "Instagram" },
-			{ name: "facebook", facebook: "Facebook" },
+			{ name: "website", link: "https://bootdey.com" },
+			{ name: "github", link: "bootdey" },
+			{ name: "instagram", link: "Instagram" },
+			{ name: "facebook", link: "Facebook" },
 		],
 		skills: {
 			experience: "20",
@@ -34,11 +33,102 @@ export const initialState = [
 		avatar:
 			"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
 		socials: [
-			{ name: "website", website: "https://bootdey.com" },
-			{ name: "github", github: "bootdey" },
-			{ name: "twitter", twitter: "@bootdey" },
-			{ name: "instagram", instagram: "Instagram" },
-			{ name: "facebook", facebook: "Facebook" },
+			{ name: "website", link: "https://bootdey.com" },
+			{ name: "github", link: "bootdey" },
+			{ name: "instagram", link: "Instagram" },
+			{ name: "facebook", link: "Facebook" },
+		],
+		skills: {
+			experience: "20",
+			english: "30",
+			communication: "5",
+			professionSkills: "8",
+		},
+	},
+	{
+		id: 2,
+		name: "John",
+		surname: "Shenko",
+		age: 22,
+		profession: "Softwate-enginer",
+		friend: false,
+		city: "Bay Area, San Francisco, CA",
+		avatar:
+			"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
+		socials: [
+			{ name: "website", link: "https://bootdey.com" },
+			{ name: "github", link: "bootdey" },
+			{ name: "instagram", link: "Instagram" },
+			{ name: "facebook", link: "Facebook" },
+		],
+		skills: {
+			experience: "20",
+			english: "30",
+			communication: "5",
+			professionSkills: "8",
+		},
+	},
+	{
+		id: 1,
+		name: "Mike",
+		surname: "Shenko",
+		age: 22,
+		profession: "Softwate-enginer",
+		friend: false,
+		city: "Bay Area, San Francisco, CA",
+		avatar:
+			"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
+		socials: [
+			{ name: "website", link: "https://bootdey.com" },
+			{ name: "github", link: "bootdey" },
+			{ name: "instagram", link: "Instagram" },
+			{ name: "facebook", link: "Facebook" },
+		],
+		skills: {
+			experience: "20",
+			english: "30",
+			communication: "5",
+			professionSkills: "8",
+		},
+	},
+	{
+		id: 3,
+		name: "Bob",
+		surname: "Shenko",
+		age: 22,
+		profession: "Softwate-enginer",
+		friend: false,
+		city: "Bay Area, San Francisco, CA",
+		avatar:
+			"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
+		socials: [
+			{ name: "website", link: "https://bootdey.com" },
+			{ name: "github", link: "bootdey" },
+			{ name: "instagram", link: "Instagram" },
+			{ name: "facebook", link: "Facebook" },
+		],
+		skills: {
+			experience: "20",
+			english: "30",
+			communication: "5",
+			professionSkills: "8",
+		},
+	},
+	{
+		id: 4,
+		name: "Miley",
+		surname: "Shenko",
+		age: 22,
+		profession: "Softwate-enginer",
+		friend: false,
+		city: "Bay Area, San Francisco, CA",
+		avatar:
+			"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
+		socials: [
+			{ name: "website", link: "https://bootdey.com" },
+			{ name: "github", link: "bootdey" },
+			{ name: "instagram", link: "Instagram" },
+			{ name: "facebook", link: "Facebook" },
 		],
 		skills: {
 			experience: "20",

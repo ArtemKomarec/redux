@@ -1,132 +1,131 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import {
-	userDeleteAction,
-	userFavouriteAction,
-} from "../store/actionCreators/users";
 import { Header } from "./header";
 
 function UsersList() {
-	const dispatch = useDispatch();
 	const allUsers = useSelector(({ users }) => users);
 
 	return (
 		<>
 			<Header />
 			<StyledUsersList>
-				{console.log(allUsers)}
-				{allUsers.map((user, index) => (
-					<div className="users-list-wrapper" key={user.name + index}>
-						<div className="users-list-container">
-							<div className="image-container">
+				<div className="user-list-title">
+					<h1>Users</h1>
+					<h2>List of users in the platform</h2>
+				</div>
+				<div className="users-list-container">
+					{allUsers.map((user, index) => (
+						<Link
+							className="visit-profile-link"
+							to={`/users/${user.id}`}
+							state={user}
+							key={user + index}
+						>
+							{console.log(user)}
+							<div className="user-list-card" key={user.name + index}>
 								<img
-									className="user-avatar"
+									className="card-avatar"
 									src={user.avatar}
-									alt={user.name + "avatar"}
+									alt={user.name}
 								/>
+								<div className="user-info">
+									<p className="user-name">{user.name}</p>
+									<p className="user-age">age: {user.age}</p>
+									<p className="user-profession">{user.profession}</p>
+									<div></div>
+								</div>
 							</div>
-							<h4 className="user-name">{user.name}</h4>
-							<p className="user-friend">
-								Friend: {user.friend ? "yes" : "no"}
-							</p>
-						</div>
-						<div className="btn-field">
-							<Link
-								className="visit-profile-link"
-								to={`/users/${user.id}`}
-								state={user}
-							>
-								Visit profile
-							</Link>
-							<button
-								className="user-friend-btn"
-								onClick={() =>
-									dispatch(userFavouriteAction(index, user.friend))
-								}
-							>
-								{user.friend ? "remove friend" : "make friend"}
-							</button>
-
-							<button
-								className="delete-user-btn"
-								onClick={() => dispatch(userDeleteAction(index))}
-							>
-								Delete
-							</button>
-						</div>
-					</div>
-				))}
+						</Link>
+					))}
+				</div>
 			</StyledUsersList>
 		</>
 	);
 }
 
 const StyledUsersList = styled.div`
-	width: 400px;
-	margin: 40px auto;
-	padding: 20px;
-	border: 2px solid #c3b7b7;
+	max-width: 1500px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 40px 0px;
+	display: flex;
+	flex-direction: column;
 
-	.users-list-wrapper {
-		padding: 16px 0px;
-		display: flex;
-		flex-direction: row;
-		gap: 40px;
-		align-items: center;
-		justify-content: space-between;
-		border-bottom: 2px solid #c3b7b7;
-		&:hover {
-			background-color: #c3b7b7;
-			cursor: pointer;
-		}
+	h1,
+	h2 {
+		margin: 0;
+	}
+
+	h1 {
+		font-size: 42px;
+		font-weight: 600;
+	}
+
+	h2 {
+		margin-top: 4px;
+		font-size: 28px;
+		font-weight: 500;
+		color: #3b3c3d;
 	}
 
 	.users-list-container {
-		width: 200px;
+		width: 100%;
+		margin-top: 40px;
+		display: grid;
+		justify-content: space-between;
+		grid-template-columns:
+			minmax(340px, max-content)
+			repeat(auto-fill, 340px);
+		row-gap: 30px;
 	}
 
-	.image-container {
-		height: 70px;
-		width: 70px;
+	.user-list-card {
+		height: 120px;
+		padding: 20px;
 		display: flex;
-		border: 2px solid black;
-		border-radius: 50%;
+		flex-direction: row;
+		gap: 30px;
+		border-radius: 6px;
+		background: white;
 	}
 
-	.user-avatar {
-		max-width: 100%;
-		max-height: 100%;
-		border-radius: 50%;
-	}
-
-	.user-name {
-		margin: "14px 0px";
-	}
-
-	.user-friend {
-		margin: "4px 0px";
-	}
-
-	.btn-field {
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
+	.user-list-card:hover {
+		cursor: pointer;
+		box-shadow: 0 10px 10px 0 rgb(0 0 0 / 10%), 0 10px 10px 0 rgb(0 0 0 / 10%);
+		transition-duration: 0.3s;
 	}
 
 	.visit-profile-link {
-		padding: 10px 8px;
 		text-decoration: none;
-		border: 2px solid #c3b7b7;
 	}
 
-	.user-friend-btn {
-		height: 20px;
+	.card-avatar {
+		width: 90px;
+		height: 90px;
+		border-radius: 50%;
 	}
 
-	.delete-user-btn {
-		height: 20px;
+	.user-info {
+		padding: 14px 0px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.user-info p {
+		margin: 0;
+		color: black;
+	}
+
+	.user-name {
+		font-size: 22px;
+		font-weight: 900;
+	}
+
+	.user-card-info {
+		color: #3b3c3d;
 	}
 `;
 
