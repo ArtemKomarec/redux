@@ -5,19 +5,23 @@ import { Instagram } from "../../assets/icons/instagram";
 import { Website } from "../../assets/icons/website";
 
 export const UserSocials = ({ socials }) => {
+	const icons = [<Website />, <Github />, <Instagram />, <Facebook />];
 	return (
 		<StyledUserSocials className="user-socials-wrapper">
+			{console.log(socials)}
 			<div className="user-social-container">
 				<span>
 					<Website /> Website
 				</span>
 				<a
 					target="_blank"
-					href={socials.website}
+					href={socials[0].website}
 					className="social-link"
-					style={socials.website ? { color: "#055dbb" } : { color: " #6c757d" }}
+					style={
+						socials[0].website ? { color: "#055dbb" } : { color: " #6c757d" }
+					}
 				>
-					{socials.website ? `${socials.website}` : "No website"}
+					{socials[0].website ? `${socials[0].website}` : "No website"}
 				</a>
 			</div>
 			<div className="user-social-container">
@@ -26,11 +30,13 @@ export const UserSocials = ({ socials }) => {
 				</span>
 				<a
 					target="_blank"
-					href={socials.github}
+					href={socials[1].github}
 					className="social-link"
-					style={socials.github ? { color: "#055dbb" } : { color: " #6c757d" }}
+					style={
+						socials[1].github ? { color: "#055dbb" } : { color: " #6c757d" }
+					}
 				>
-					{socials.github ? `${socials.github}` : "No github"}
+					{socials[1].github ? `${socials[1].github}` : "No github"}
 				</a>
 			</div>
 
@@ -40,13 +46,13 @@ export const UserSocials = ({ socials }) => {
 				</span>
 				<a
 					target="_blank"
-					href={socials.instagram}
+					href={socials[2].instagram}
 					className="social-link"
 					style={
-						socials.instagram ? { color: "#055dbb" } : { color: " #6c757d" }
+						socials[2].instagram ? { color: "#055dbb" } : { color: " #6c757d" }
 					}
 				>
-					{socials.instagram ? `${socials.instagram}` : "No instagram"}
+					{socials[2].instagram ? `${socials[2].instagram}` : "No instagram"}
 				</a>
 			</div>
 			<div className="user-social-container">
@@ -55,13 +61,13 @@ export const UserSocials = ({ socials }) => {
 				</span>
 				<a
 					target="_blank"
-					href={socials.facebook}
+					href={socials[3].facebook}
 					className="social-link"
 					style={
-						socials.facebook ? { color: "#055dbb" } : { color: " #6c757d" }
+						socials[3].facebook ? { color: "#055dbb" } : { color: " #6c757d" }
 					}
 				>
-					{socials.facebook ? `${socials.facebook}` : "No facebook"}
+					{socials[3].facebook ? `${socials[3].facebook}` : "No facebook"}
 				</a>
 			</div>
 		</StyledUserSocials>
@@ -82,10 +88,8 @@ const StyledUserSocials = styled.div`
 
 	.user-social-container {
 		width: 100%;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
+		display: grid;
+		grid-template-columns: 120px 1fr;
 		border-bottom: 1px solid #acacac;
 
 		span {

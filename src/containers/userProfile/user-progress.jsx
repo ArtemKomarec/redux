@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const UserProgress = ({ user }) => {
-	const data = ["a", "b"];
 	return (
 		<StyledUserProgress>
-			{console.log(user)}
 			<div className="user-progress-container">
 				<span>Experience</span>
 				<div className="progress-bar-wrapper">

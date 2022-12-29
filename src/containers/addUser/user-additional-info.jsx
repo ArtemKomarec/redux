@@ -8,6 +8,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 	const dispatch = useDispatch();
 	const id = useSelector(({ users }) => users.length);
 	const textFields = ["website", "github", "instagram", "facebook"];
+	const numberFields = ["experience", "communication", "professionSkills"];
 
 	const handleSubmit = () => {
 		console.log(user);
@@ -37,33 +38,52 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 					"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
 				city: "",
 				skills: {},
-				socials: {},
+				socials: [
+					{ name: "website", website: "" },
+					{ name: "github", github: "" },
+					{ name: "instagram", instagram: "" },
+					{ name: "facebook", facebook: "" },
+				],
 			});
 		}
 	};
 
-	const changeSocials = (e) => {
+	const changeSocials = (e, index) => {
 		if (e.target.value === "" && textFields.includes(e.target.name)) {
 			setUser({ ...user, socials: { [e.target.name]: e.target.value } });
 		}
 		if (textFields.includes(e.target.name)) {
 			if (/[a-zA-Z]+/g.test(e.target.value)) {
-				setUser({
-					...user,
-					socials: { ...user.socials, [e.target.name]: e.target.value },
+				setUser(({ socials }) => {
+					return {
+						...user,
+						socials: (() => {
+							const nSocials = [...socials];
+							nSocials[index] = {
+								...nSocials[index],
+								[e.target.name]: e.target.value,
+							};
+							return nSocials;
+						})(),
+					};
 				});
 			}
 		}
 	};
 
 	const changeSkills = (e) => {
-		setUser({
-			...user,
-			skills: {
-				...user.skills,
-				[e.target.name]: e.target.value,
-			},
-		});
+		console.log(e.target.value);
+		if (e.target.value >= 0 && e.target.value < 11) {
+			setUser({
+				...user,
+				skills: {
+					...user.skills,
+					[e.target.name]: e.target.value * 10,
+				},
+			});
+		} else {
+			toast.error("Input number between 0 and 10");
+		}
 	};
 
 	const selectEnglishLvl = (e) => {
@@ -79,45 +99,19 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 	return (
 		<StyledAdditionalInfo>
 			<ToastContainer />
-			{/* {console.log(16.6666666666666666 * 6)} */}
 			<h1 className="user-additional-header">Social links</h1>
 			<div className="social-links-wrapper">
-				<div className="social-link-container">
-					<span> Website</span>
-					<input
-						className="new-user-field"
-						name="website"
-						placeholder="Enter your website link"
-						onChange={changeSocials}
-					/>
-				</div>
-				<div className="social-link-container">
-					<span>Github </span>
-					<input
-						className="new-user-field"
-						name="github"
-						placeholder="Enter your gihtub link"
-						onChange={changeSocials}
-					/>
-				</div>
-				<div className="social-link-container">
-					<span>Facebook </span>
-					<input
-						className="new-user-field"
-						name="facebook"
-						placeholder="Enter your facebook link"
-						onChange={changeSocials}
-					/>
-				</div>
-				<div className="social-link-container">
-					<span>Instagram </span>
-					<input
-						className="new-user-field"
-						name="instagram"
-						placeholder="Enter your instagram link"
-						onChange={changeSocials}
-					/>
-				</div>
+				{user.socials.map((currentSocial, index) => (
+					<div className="social-link-container" key={currentSocial.name}>
+						<span>{currentSocial.name}</span>
+						<input
+							className="new-user-field"
+							name={currentSocial.name}
+							placeholder="Enter your gihtub link"
+							onChange={(e) => changeSocials(e, index)}
+						/>
+					</div>
+				))}
 			</div>
 			<span className="divider"></span>
 			<h1>Skills</h1>
@@ -127,6 +121,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 					<input
 						className="new-user-field"
 						name="experience"
+						type="number"
 						placeholder="Enter value between 1 and 10"
 						onChange={changeSkills}
 					/>
@@ -135,6 +130,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 					<span>Communication </span>
 					<input
 						className="new-user-field"
+						maxLength={2}
 						name="communication"
 						placeholder="Enter value between 1 and 10"
 						onChange={changeSkills}
@@ -147,6 +143,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 						defaultValue="select value"
 						onChange={selectEnglishLvl}
 					>
+						<option value="">Choose english lvl</option>
 						<option value="17">A1</option>
 						<option value="34">A2</option>
 						<option value="51">B1</option>
@@ -160,6 +157,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 					<input
 						className="new-user-field"
 						name="professionSkills"
+						maxLength={2}
 						placeholder="Enter value between 1 and 10"
 						onChange={changeSkills}
 					/>
@@ -203,6 +201,10 @@ const StyledAdditionalInfo = styled.div`
 			font-weight: 500;
 			opacity: 0.7;
 		}
+
+		span::first-letter {
+			text-transform: capitalize;
+		}
 	}
 
 	.new-user-field {
@@ -212,6 +214,11 @@ const StyledAdditionalInfo = styled.div`
 		align-self: center;
 		border: 1px solid #c3b7b7;
 		border-radius: 4px;
+		-moz-appearance: textfield;
+	}
+
+	.new-user-field::-webkit-inner-spin-button {
+		display: none;
 	}
 
 	.new-user-field:focus {

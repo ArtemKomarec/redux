@@ -9,16 +9,16 @@ export const initialState = [
 		city: "Bay Area, San Francisco, CA",
 		avatar:
 			"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
-		socials: {
-			website: "https://bootdey.com",
-			github: "bootdey",
-			twitter: "@bootdey",
-			instagram: "Instagram",
-			facebook: "Facebook",
-		},
+		socials: [
+			{ name: "website", website: "https://bootdey.com" },
+			{ name: "github", github: "bootdey" },
+			{ name: "twitter", twitter: "@bootdey" },
+			{ name: "instagram", instagram: "Instagram" },
+			{ name: "facebook", facebook: "Facebook" },
+		],
 		skills: {
 			experience: "20",
-			english: "b1",
+			english: "75",
 			communication: "5",
 			professionSkills: "8",
 		},
@@ -33,16 +33,16 @@ export const initialState = [
 		city: "Bay Area, San Francisco, CA",
 		avatar:
 			"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
-		socials: {
-			website: "https://bootdey.com",
-			github: "bootdey",
-			twitter: "@bootdey",
-			instagram: "Instagram",
-			facebook: "Facebook",
-		},
+		socials: [
+			{ name: "website", website: "https://bootdey.com" },
+			{ name: "github", github: "bootdey" },
+			{ name: "twitter", twitter: "@bootdey" },
+			{ name: "instagram", instagram: "Instagram" },
+			{ name: "facebook", facebook: "Facebook" },
+		],
 		skills: {
 			experience: "20",
-			english: "b1",
+			english: "30",
 			communication: "5",
 			professionSkills: "8",
 		},
