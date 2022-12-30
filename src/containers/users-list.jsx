@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Header } from "./header";
+import { Pagination } from "./pagination";
 
 function UsersList() {
+	const [currentPage, setCurrentPage] = useState(1);
+	const [postsPerPage] = useState(3);
+
 	const allUsers = useSelector(({ users }) => users);
+
+	const indexOfLastPost = currentPage * postsPerPage;
+	const indexOfFirstPost = indexOfLastPost - postsPerPage;
+	const currentPosts = allUsers.slice(indexOfFirstPost, indexOfLastPost);
+
+	const paginate = (pageNumber) => {
+		setCurrentPage(pageNumber);
+	};
+
+	const nextPage = () => {
+		console.log(allUsers.length / postsPerPage);
+		if (currentPage !== allUsers.length / postsPerPage) {
+			setCurrentPage(currentPage + 1);
+		}
+	};
+
+	const previousPage = () => {
+		if (currentPage !== 1) {
+			setCurrentPage(currentPage - 1);
+		}
+	};
 
 	return (
 		<>
@@ -16,14 +41,13 @@ function UsersList() {
 					<h2>List of users in the platform</h2>
 				</div>
 				<div className="users-list-container">
-					{allUsers.map((user, index) => (
+					{currentPosts.map((user, index) => (
 						<Link
 							className="visit-profile-link"
 							to={`/users/${user.id}`}
 							state={user}
 							key={user + index}
 						>
-							{console.log(user)}
 							<div className="user-list-card" key={user.name + index}>
 								<img
 									className="card-avatar"
@@ -40,6 +64,13 @@ function UsersList() {
 						</Link>
 					))}
 				</div>
+				<Pagination
+					postsPerPage={postsPerPage}
+					totalPosts={allUsers.length}
+					paginate={paginate}
+					previousPage={previousPage}
+					nextPage={nextPage}
+				/>
 			</StyledUsersList>
 		</>
 	);

@@ -36,7 +36,7 @@ export const UserMainInfo = ({ user, setUser }) => {
 			const image = URL.createObjectURL(userImage);
 			setUser({ ...user, avatar: image });
 		}
-	}, [userImage, user, setUser]);
+	}, [userImage]);
 
 	return (
 		<StyledNewUserAvatar>

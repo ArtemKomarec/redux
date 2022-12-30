@@ -69,31 +69,8 @@ export const initialState = [
 		},
 	},
 	{
-		id: 1,
-		name: "Mike",
-		surname: "Shenko",
-		age: 22,
-		profession: "Softwate-enginer",
-		friend: false,
-		city: "Bay Area, San Francisco, CA",
-		avatar:
-			"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
-		socials: [
-			{ name: "website", link: "https://bootdey.com" },
-			{ name: "github", link: "bootdey" },
-			{ name: "instagram", link: "Instagram" },
-			{ name: "facebook", link: "Facebook" },
-		],
-		skills: {
-			experience: "20",
-			english: "30",
-			communication: "5",
-			professionSkills: "8",
-		},
-	},
-	{
 		id: 3,
-		name: "Bob",
+		name: "Billy",
 		surname: "Shenko",
 		age: 22,
 		profession: "Softwate-enginer",
@@ -116,6 +93,29 @@ export const initialState = [
 	},
 	{
 		id: 4,
+		name: "Bob",
+		surname: "Shenko",
+		age: 22,
+		profession: "Softwate-enginer",
+		friend: false,
+		city: "Bay Area, San Francisco, CA",
+		avatar:
+			"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
+		socials: [
+			{ name: "website", link: "https://bootdey.com" },
+			{ name: "github", link: "bootdey" },
+			{ name: "instagram", link: "Instagram" },
+			{ name: "facebook", link: "Facebook" },
+		],
+		skills: {
+			experience: "20",
+			english: "30",
+			communication: "5",
+			professionSkills: "8",
+		},
+	},
+	{
+		id: 5,
 		name: "Miley",
 		surname: "Shenko",
 		age: 22,
