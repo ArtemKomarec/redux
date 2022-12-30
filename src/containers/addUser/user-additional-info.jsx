@@ -243,10 +243,13 @@ const StyledAdditionalInfo = styled.div`
 		max-width: 120px;
 		margin-top: 30px;
 		padding: 8px 6px;
+
 		border-radius: 4px;
 		border: 2px solid #465374;
 		color: #e2e8f0;
 		background-color: #465374;
+		transition: 0.4s ease;
+
 		font-family: 500;
 		letter-spacing: 0.6px;
 		cursor: pointer;

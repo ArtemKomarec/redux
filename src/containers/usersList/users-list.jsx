@@ -2,26 +2,26 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Header } from "./header";
+import { Header } from "../header";
 import { Pagination } from "./pagination";
+import { UsersListHeader } from "./users-list-header";
 
-function UsersList() {
+export const UsersList = () => {
 	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage] = useState(3);
+	const [postsPerPage] = useState(8);
 
 	const allUsers = useSelector(({ users }) => users);
 
-	const indexOfLastPost = currentPage * postsPerPage;
-	const indexOfFirstPost = indexOfLastPost - postsPerPage;
-	const currentPosts = allUsers.slice(indexOfFirstPost, indexOfLastPost);
+	const indexOfLastCard = currentPage * postsPerPage;
+	const indexOfFirstCard = indexOfLastCard - postsPerPage;
+	const currentPosts = allUsers.slice(indexOfFirstCard, indexOfLastCard);
 
 	const paginate = (pageNumber) => {
 		setCurrentPage(pageNumber);
 	};
 
 	const nextPage = () => {
-		console.log(allUsers.length / postsPerPage);
-		if (currentPage !== allUsers.length / postsPerPage) {
+		if (currentPage !== Math.ceil(allUsers.length / postsPerPage)) {
 			setCurrentPage(currentPage + 1);
 		}
 	};
@@ -36,45 +36,46 @@ function UsersList() {
 		<>
 			<Header />
 			<StyledUsersList>
-				<div className="user-list-title">
-					<h1>Users</h1>
-					<h2>List of users in the platform</h2>
-				</div>
-				<div className="users-list-container">
-					{currentPosts.map((user, index) => (
-						<Link
-							className="visit-profile-link"
-							to={`/users/${user.id}`}
-							state={user}
-							key={user + index}
-						>
-							<div className="user-list-card" key={user.name + index}>
-								<img
-									className="card-avatar"
-									src={user.avatar}
-									alt={user.name}
-								/>
-								<div className="user-info">
-									<p className="user-name">{user.name}</p>
-									<p className="user-age">age: {user.age}</p>
-									<p className="user-profession">{user.profession}</p>
-									<div></div>
+				<div className="users-list-wrapper">
+					<UsersListHeader />
+					<div className="users-list-container">
+						{currentPosts.map((user, index) => (
+							<Link
+								className="visit-profile-link"
+								to={`/users/${user.id}`}
+								state={user}
+								key={user + index}
+							>
+								<div className="user-list-card" key={user.name + index}>
+									<img
+										className="card-avatar"
+										src={user.avatar}
+										alt={user.name}
+									/>
+									<div className="user-info">
+										<p className="user-name">{user.name}</p>
+										<p className="user-age">age: {user.age}</p>
+										<p className="user-profession">{user.profession}</p>
+										<div></div>
+									</div>
 								</div>
-							</div>
-						</Link>
-					))}
+							</Link>
+						))}
+					</div>
+					<Pagination
+						postsPerPage={postsPerPage}
+						totalPosts={allUsers.length}
+						paginate={paginate}
+						previousPage={previousPage}
+						nextPage={nextPage}
+						currentPage={currentPage}
+						allUsers={allUsers}
+					/>
 				</div>
-				<Pagination
-					postsPerPage={postsPerPage}
-					totalPosts={allUsers.length}
-					paginate={paginate}
-					previousPage={previousPage}
-					nextPage={nextPage}
-				/>
 			</StyledUsersList>
 		</>
 	);
-}
+};
 
 const StyledUsersList = styled.div`
 	max-width: 1500px;
@@ -101,9 +102,14 @@ const StyledUsersList = styled.div`
 		color: #3b3c3d;
 	}
 
+	.users-list-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
 	.users-list-container {
 		width: 100%;
-		margin-top: 40px;
 		display: grid;
 		justify-content: space-between;
 		grid-template-columns:
@@ -159,5 +165,3 @@ const StyledUsersList = styled.div`
 		color: #3b3c3d;
 	}
 `;
-
-export default React.memo(UsersList);

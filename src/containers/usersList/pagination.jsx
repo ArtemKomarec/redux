@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PaginationArrow } from "../assets/icons/pagination-arrow";
+import { PaginationArrow } from "../../assets/icons/pagination-arrow";
 
 export const Pagination = ({
 	postsPerPage,
@@ -7,6 +7,8 @@ export const Pagination = ({
 	paginate,
 	nextPage,
 	previousPage,
+	currentPage,
+	allUsers,
 }) => {
 	const pagesList = [];
 
@@ -17,19 +19,26 @@ export const Pagination = ({
 	return (
 		<StyledPagination>
 			<ul className="pagination-list">
-				<StyledPreviousArrow onClick={previousPage}>
+				<StyledPreviousArrow onClick={previousPage} currentPage={currentPage}>
 					<PaginationArrow />
 				</StyledPreviousArrow>
 				{pagesList.map((currentNumber) => (
-					<li
+					<StyledListNumber
 						className="pagination-item"
 						key={currentNumber}
 						onClick={() => paginate(currentNumber)}
+						currentPage={currentPage}
+						currentNumber={currentNumber}
 					>
 						{currentNumber}
-					</li>
+					</StyledListNumber>
 				))}
-				<StyledNextArrow onClick={nextPage}>
+				<StyledNextArrow
+					onClick={nextPage}
+					currentPage={currentPage}
+					allUsers={allUsers.length}
+					postsPerPage={postsPerPage}
+				>
 					<PaginationArrow />
 				</StyledNextArrow>
 			</ul>
@@ -38,21 +47,14 @@ export const Pagination = ({
 };
 
 const StyledPagination = styled.div`
+	align-self: flex-end;
+
 	.pagination-list {
 		padding: 0;
 		display: flex;
 		flex-direction: row;
 		gap: 12px;
 		list-style: none;
-	}
-
-	.pagination-item {
-		padding: 8px 12px;
-		border-radius: 6px;
-		color: #00a8ff;
-		background: white;
-		font-weight: 500;
-		cursor: pointer;
 	}
 
 	.pagination-item:hover {
@@ -69,14 +71,32 @@ const StyledPagination = styled.div`
 	}
 `;
 
+const StyledListNumber = styled.li`
+	padding: 8px 12px;
+	border-radius: 6px;
+	color: ${(props) =>
+		props.currentPage === props.currentNumber ? "white" : "#00a8ff"};
+	background-color: ${(props) =>
+		props.currentPage === props.currentNumber ? "#00a8ff" : "white"};
+	font-weight: 500;
+	cursor: pointer;
+`;
+
 const StyledNextArrow = styled.li`
 	padding: 8px 10px;
-	display: flex;
+
+	display: ${(props) =>
+		props.currentPage !== Math.ceil(props.allUsers / props.postsPerPage)
+			? "flex"
+			: "none"};
+
 	align-items: center;
 	border-radius: 6px;
 	background: white;
 	cursor: pointer;
 
+	background-color: ${(props) =>
+		props.currentPage !== props ? props.color : "#ff0"};
 	svg {
 		fill: #00a8ff;
 	}
@@ -101,5 +121,7 @@ const StyledNextArrow = styled.li`
 `;
 
 const StyledPreviousArrow = styled(StyledNextArrow)`
+	display: ${(props) => (props.currentPage !== 1 ? "flex	" : "none")};
+
 	transform: rotate(0.5turn);
 `;
