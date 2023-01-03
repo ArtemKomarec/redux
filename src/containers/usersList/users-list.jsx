@@ -8,7 +8,7 @@ import { UsersListHeader } from "./users-list-header";
 
 export const UsersList = () => {
 	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage] = useState(8);
+	const [postsPerPage] = useState(1);
 
 	const allUsers = useSelector(({ users }) => users);
 

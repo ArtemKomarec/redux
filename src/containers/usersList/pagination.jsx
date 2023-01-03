@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { PaginationArrow } from "../../assets/icons/pagination-arrow";
 
@@ -10,29 +11,55 @@ export const Pagination = ({
 	currentPage,
 	allUsers,
 }) => {
+	const [pages, setPages] = useState(currentPage);
 	const pagesList = [];
 
 	for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
 		pagesList.push(i);
 	}
 
+	console.log(pagesList.length - 2, currentPage);
 	return (
 		<StyledPagination>
 			<ul className="pagination-list">
 				<StyledPreviousArrow onClick={previousPage} currentPage={currentPage}>
 					<PaginationArrow />
 				</StyledPreviousArrow>
-				{pagesList.map((currentNumber) => (
-					<StyledListNumber
-						className="pagination-item"
-						key={currentNumber}
-						onClick={() => paginate(currentNumber)}
-						currentPage={currentPage}
-						currentNumber={currentNumber}
-					>
-						{currentNumber}
-					</StyledListNumber>
-				))}
+				{pagesList
+					.slice(
+						currentPage >= pagesList.length - 1
+							? currentPage - 3
+							: currentPage - 1,
+						currentPage >= pagesList.length - 1
+							? currentPage - 2
+							: currentPage + 1
+					)
+					.map((currentNumber) => (
+						<StyledListNumber
+							className="pagination-item"
+							key={currentNumber}
+							onClick={() => paginate(currentNumber)}
+							currentPage={currentPage}
+							currentNumber={currentNumber}
+						>
+							{currentNumber}
+						</StyledListNumber>
+					))}
+				{pagesList.length > 5 && <div></div>}
+				{pagesList.length > 5 &&
+					pagesList
+						.slice(pagesList.length - 2, pagesList.length)
+						.map((currentNumber) => (
+							<StyledListNumber
+								className="pagination-item"
+								key={currentNumber}
+								onClick={() => paginate(currentNumber)}
+								currentPage={currentPage}
+								currentNumber={currentNumber}
+							>
+								{currentNumber}
+							</StyledListNumber>
+						))}
 				<StyledNextArrow
 					onClick={nextPage}
 					currentPage={currentPage}
@@ -84,25 +111,26 @@ const StyledListNumber = styled.li`
 
 const StyledNextArrow = styled.li`
 	padding: 8px 10px;
-
-	display: ${(props) =>
-		props.currentPage !== Math.ceil(props.allUsers / props.postsPerPage)
-			? "flex"
-			: "none"};
+	display: flex;
 
 	align-items: center;
 	border-radius: 6px;
 	background: white;
 	cursor: pointer;
 
-	background-color: ${(props) =>
-		props.currentPage !== props ? props.color : "#ff0"};
 	svg {
 		fill: #00a8ff;
 	}
 
 	&:hover {
-		background-color: #00a8ff;
+		background-color: ${(props) =>
+			props.currentPage !== Math.ceil(props.allUsers / props.postsPerPage)
+				? "#00a8ff"
+				: "#c6c6c6"};
+		cursor: ${(props) =>
+			props.currentPage !== Math.ceil(props.allUsers / props.postsPerPage)
+				? "pointer"
+				: "not-allowed"};
 		color: white;
 		transition: all 0.5s ease;
 
@@ -121,7 +149,19 @@ const StyledNextArrow = styled.li`
 `;
 
 const StyledPreviousArrow = styled(StyledNextArrow)`
-	display: ${(props) => (props.currentPage !== 1 ? "flex	" : "none")};
+	display: flex;
+
+	&:hover {
+		background-color: ${(props) =>
+			props.currentPage !== 1 ? "#00a8ff" : "#c6c6c6"};
+		color: white;
+		transition: all 0.5s ease;
+		cursor: ${(props) => (props.currentPage !== 1 ? "pointer" : "not-allowed")};
+
+		svg {
+			fill: white;
+		}
+	}
 
 	transform: rotate(0.5turn);
 `;
