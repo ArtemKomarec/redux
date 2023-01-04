@@ -7,7 +7,7 @@ import { UserAdditionalInfo } from "./user-additional-info";
 export const AddUserForm = () => {
 	const [user, setUser] = useState({
 		name: "",
-		surname: "",
+		age: "",
 		email: "",
 		phone: "",
 		profession: "",

@@ -16,7 +16,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 		console.log(user);
 		if (
 			user.name === "" ||
-			user.surname === "" ||
+			user.age === "" ||
 			user.email === "" ||
 			user.profession === "" ||
 			user.phone === "" ||
@@ -32,7 +32,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 			});
 			setUser({
 				name: "",
-				surname: "",
+				age: "",
 				email: "",
 				phone: "",
 				profession: "",

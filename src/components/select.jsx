@@ -1,4 +1,3 @@
-import { map } from "lodash";
 import styled from "styled-components";
 
 export const Select = ({ data, selectHandle }) => {
@@ -27,7 +26,7 @@ const StyledSelectMenu = styled.div`
 	.select-menu-container {
 		margin-top: 4px;
 		padding: 11.25px 8px;
-		border-radius: 4px;
+		border-radius: 6px;
 		border: 1px solid #c3b7b7;
 	}
 `;

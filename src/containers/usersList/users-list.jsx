@@ -125,6 +125,7 @@ const StyledUsersList = styled.div`
 
 	.user-list-card {
 		height: 120px;
+		margin-top: 20px;
 		padding: 20px;
 		display: flex;
 		flex-direction: row;

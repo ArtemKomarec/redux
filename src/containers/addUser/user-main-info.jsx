@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const UserMainInfo = ({ user, setUser }) => {
 	const [userImage, setUserImage] = useState(null);
-	const textFields = ["name", "surname", "email", "profession", "city"];
+	const textFields = ["name", "email", "profession", "city"];
 
 	const changeInput = (e) => {
 		if (e.target.value === "" && textFields.includes(e.target.name)) {
@@ -15,7 +15,7 @@ export const UserMainInfo = ({ user, setUser }) => {
 			if (/[a-zA-Z]+/g.test(e.target.value)) {
 				setUser({ ...user, [e.target.name]: e.target.value });
 			}
-		} else if (e.target.name === "phone") {
+		} else if (e.target.name === "phone" || e.target.name === "age") {
 			if (e.target.value === "") {
 				setUser({ ...user, [e.target.name]: e.target.value });
 			}
@@ -64,7 +64,7 @@ export const UserMainInfo = ({ user, setUser }) => {
 					<input
 						className="new-user-field"
 						name="name"
-						placeholder="Type user name"
+						placeholder="Type user full name"
 						type="text"
 						value={user.name}
 						onChange={changeInput}
@@ -82,13 +82,14 @@ export const UserMainInfo = ({ user, setUser }) => {
 					/>
 				</div>
 				<div className="new-user-field-container">
-					<span>Surname</span>
+					<span>Age</span>
 					<input
 						className="new-user-field"
-						name="surname"
-						placeholder="Type user surname"
+						name="age"
+						placeholder="Type user age"
 						type="text"
-						value={user.surname}
+						maxLength={2}
+						value={user.age}
 						onChange={changeInput}
 					/>
 				</div>
