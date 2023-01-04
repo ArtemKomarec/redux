@@ -15,7 +15,7 @@ export const users = (state = initialState, action) => {
 		}
 		case USER_ADD_ACTION: {
 			const [...newState] = state;
-			console.log(action);
+			console.log(action.user.user.socials);
 			const newUser = {
 				id: action.user.id,
 				name: action.user.user.name,

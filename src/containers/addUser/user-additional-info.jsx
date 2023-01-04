@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { userAddAction } from "../../store/actionCreators/users";
 import { Select } from "../../components/select";
 import { englishLvl } from "../../assets/constants";
+import { UserSocialLinks } from "./user-social-links.jsx";
 
 export const UserAdditionalInfo = ({ user, setUser }) => {
 	const dispatch = useDispatch();
@@ -67,7 +68,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 							const nSocials = [...socials];
 							nSocials[index] = {
 								...nSocials[index],
-								link: e.target.value,
+								[e.target.name]: e.target.value,
 							};
 							return nSocials;
 						})(),
@@ -106,19 +107,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 		<StyledAdditionalInfo>
 			<ToastContainer />
 			<h1 className="user-additional-header">Social links</h1>
-			<div className="social-links-wrapper">
-				{user.socials.map((currentSocial, index) => (
-					<div className="social-link-container" key={currentSocial.name}>
-						<span>{currentSocial.name}</span>
-						<input
-							className="new-user-field"
-							name={currentSocial.name}
-							placeholder="Enter your gihtub link"
-							onChange={(e) => changeSocials(e, index)}
-						/>
-					</div>
-				))}
-			</div>
+			<UserSocialLinks user={user} changeSocials={changeSocials} />
 			<span className="divider"></span>
 			<h1>Skills</h1>
 			<div className="social-links-wrapper">

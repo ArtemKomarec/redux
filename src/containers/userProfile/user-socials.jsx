@@ -13,20 +13,26 @@ export const UserSocials = ({ socials }) => {
 					className="user-social-container"
 					key={currentSocial.name + currentSocial.link}
 				>
+					{console.log(currentSocial[currentSocial.name])}
+
 					<span>
 						{icons[index]}
 						{currentSocial.name}
 					</span>
 					<a
 						target="_blank"
-						href={currentSocial.link}
+						href={currentSocial[currentSocial.name]}
 						rel="noopener noreferrer"
 						className="social-link"
 						style={
-							currentSocial.link ? { color: "#055dbb" } : { color: " #6c757d" }
+							currentSocial[currentSocial.name]
+								? { color: "#055dbb" }
+								: { color: " #6c757d" }
 						}
 					>
-						{currentSocial.link ? `${currentSocial.link}` : "No website"}
+						{currentSocial[currentSocial.name]
+							? `${currentSocial[currentSocial.name]}`
+							: "No website"}
 					</a>
 				</div>
 			))}
