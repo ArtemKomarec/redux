@@ -65,8 +65,7 @@ const StyledUserProgress = styled.div`
 `;
 
 const ProgressBarResult = styled.div`
-	width: 0%;
-	width: ${(props) => props.progress}%;
+	width: ${(props) => props.progress * 10}%;
 	height: 6px;
 	border-radius: 4px;
 	background-color: #007bff;

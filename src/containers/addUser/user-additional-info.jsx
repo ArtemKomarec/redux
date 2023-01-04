@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { userAddAction } from "../../store/actionCreators/users";
+import { Select } from "../../components/select";
+import { englishLvl } from "../../assets/constants";
 
 export const UserAdditionalInfo = ({ user, setUser }) => {
 	const dispatch = useDispatch();
@@ -36,7 +38,12 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 				avatar:
 					"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
 				city: "",
-				skills: {},
+				skills: {
+					experience: "",
+					english: "",
+					communication: "",
+					professionSkills: "",
+				},
 				socials: [
 					{ name: "website", website: "" },
 					{ name: "github", github: "" },
@@ -77,7 +84,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 				...user,
 				skills: {
 					...user.skills,
-					[e.target.name]: e.target.value * 10,
+					[e.target.name]: e.target.value,
 				},
 			});
 		} else {
@@ -120,6 +127,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 					<input
 						className="new-user-field"
 						name="experience"
+						value={user.skills.experience}
 						type="number"
 						placeholder="Enter value between 1 and 10"
 						onChange={changeSkills}
@@ -129,6 +137,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 					<span>Communication </span>
 					<input
 						className="new-user-field"
+						value={user.skills.communication}
 						maxLength={2}
 						name="communication"
 						placeholder="Enter value between 1 and 10"
@@ -137,25 +146,14 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 				</div>
 				<div className="social-link-container">
 					<span>English </span>
-					<select
-						className="select-english-lvl"
-						defaultValue="select value"
-						onChange={selectEnglishLvl}
-					>
-						<option value="">Choose english lvl</option>
-						<option value="17">A1</option>
-						<option value="34">A2</option>
-						<option value="51">B1</option>
-						<option value="68">B2</option>
-						<option value="85">C1</option>
-						<option value="100">C2</option>
-					</select>
+					<Select data={englishLvl} selectHandle={selectEnglishLvl} />
 				</div>
 				<div className="social-link-container">
 					<span>Professional skills </span>
 					<input
 						className="new-user-field"
 						name="professionSkills"
+						value={user.skills.professionSkills}
 						maxLength={2}
 						placeholder="Enter value between 1 and 10"
 						onChange={changeSkills}
