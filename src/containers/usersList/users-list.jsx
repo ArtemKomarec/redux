@@ -8,13 +8,18 @@ import { UsersListHeader } from "./users-list-header";
 
 export const UsersList = () => {
 	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage] = useState(1);
+	const [postsPerPage] = useState(8);
 
 	const allUsers = useSelector(({ users }) => users);
 
 	const indexOfLastCard = currentPage * postsPerPage;
 	const indexOfFirstCard = indexOfLastCard - postsPerPage;
 	const currentPosts = allUsers.slice(indexOfFirstCard, indexOfLastCard);
+
+	const pagesList = [];
+	for (let i = 1; i <= Math.ceil(allUsers.length / postsPerPage); i++) {
+		pagesList.push(i);
+	}
 
 	const paginate = (pageNumber) => {
 		setCurrentPage(pageNumber);
@@ -64,12 +69,12 @@ export const UsersList = () => {
 					</div>
 					<Pagination
 						postsPerPage={postsPerPage}
-						totalPosts={allUsers.length}
 						paginate={paginate}
 						previousPage={previousPage}
 						nextPage={nextPage}
 						currentPage={currentPage}
 						allUsers={allUsers}
+						pagesList={pagesList}
 					/>
 				</div>
 			</StyledUsersList>

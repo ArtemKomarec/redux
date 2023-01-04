@@ -1,65 +1,32 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { PaginationArrow } from "../../assets/icons/pagination-arrow";
 
 export const Pagination = ({
 	postsPerPage,
-	totalPosts,
 	paginate,
 	nextPage,
 	previousPage,
 	currentPage,
 	allUsers,
+	pagesList,
 }) => {
-	const [pages, setPages] = useState(currentPage);
-	const pagesList = [];
-
-	for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-		pagesList.push(i);
-	}
-
-	console.log(pagesList.length - 2, currentPage);
 	return (
 		<StyledPagination>
 			<ul className="pagination-list">
 				<StyledPreviousArrow onClick={previousPage} currentPage={currentPage}>
 					<PaginationArrow />
 				</StyledPreviousArrow>
-				{pagesList
-					.slice(
-						currentPage >= pagesList.length - 1
-							? currentPage - 3
-							: currentPage - 1,
-						currentPage >= pagesList.length - 1
-							? currentPage - 2
-							: currentPage + 1
-					)
-					.map((currentNumber) => (
-						<StyledListNumber
-							className="pagination-item"
-							key={currentNumber}
-							onClick={() => paginate(currentNumber)}
-							currentPage={currentPage}
-							currentNumber={currentNumber}
-						>
-							{currentNumber}
-						</StyledListNumber>
-					))}
-				{pagesList.length > 5 && <div></div>}
-				{pagesList.length > 5 &&
-					pagesList
-						.slice(pagesList.length - 2, pagesList.length)
-						.map((currentNumber) => (
-							<StyledListNumber
-								className="pagination-item"
-								key={currentNumber}
-								onClick={() => paginate(currentNumber)}
-								currentPage={currentPage}
-								currentNumber={currentNumber}
-							>
-								{currentNumber}
-							</StyledListNumber>
-						))}
+				{pagesList.map((currentNumber) => (
+					<StyledListNumber
+						key={currentNumber}
+						className="pagination-item"
+						onClick={() => paginate(currentNumber)}
+						currentPage={currentPage}
+						currentNumber={currentNumber}
+					>
+						{currentNumber}
+					</StyledListNumber>
+				))}
 				<StyledNextArrow
 					onClick={nextPage}
 					currentPage={currentPage}
