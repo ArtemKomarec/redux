@@ -13,8 +13,6 @@ export const UserSocials = ({ socials }) => {
 					className="user-social-container"
 					key={currentSocial.name + currentSocial.link}
 				>
-					{console.log(currentSocial[currentSocial.name])}
-
 					<span>
 						{icons[index]}
 						{currentSocial.name}

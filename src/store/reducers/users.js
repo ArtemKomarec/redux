@@ -2,7 +2,8 @@ import {
 	USER_DELETE_ACTION,
 	USER_ADD_ACTION,
 	USER_FAVOURITE_ACTION,
-	USERS_SORT_BY_AGE,
+	USERS_SORT_BY_NUMBER_ASC,
+	USERS_SORT_BY_NUMBER_DESC,
 } from "../actions/users";
 import { initialState } from "../initialState";
 
@@ -39,11 +40,14 @@ export const users = (state = initialState, action) => {
 			newState[index].friend = !action.friend;
 			return newState;
 		}
-		case USERS_SORT_BY_AGE: {
+		case USERS_SORT_BY_NUMBER_ASC: {
 			console.log(action);
-
 			const [...newState] = action.users;
-
+			return newState;
+		}
+		case USERS_SORT_BY_NUMBER_DESC: {
+			console.log(action);
+			const [...newState] = action.users;
 			return newState;
 		}
 		default:

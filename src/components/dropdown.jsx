@@ -2,45 +2,92 @@ import { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Sorting } from "../assets/icons/sorting";
-import { userSortByAge } from "../store/actionCreators/users";
+import {
+	userSortByNumberAsc,
+	userSortByNumberDesc,
+} from "../store/actionCreators/users";
 
 export const Dropdown = () => {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 
 	const dispatch = useDispatch();
 	const allUsers = useSelector(({ users }) => users);
+	console.log(allUsers);
 
 	const openDropdown = ({}) => {
 		setDropdownOpen(!dropdownOpen);
 	};
 
-	const SortByAge = () => {
-		allUsers.sort((secondUser, firstUser) => secondUser.age - firstUser.age);
-		dispatch(userSortByAge(allUsers));
-		setDropdownOpen(!dropdownOpen);
+	const SortByAge = (e) => {
+		console.log(e.target.dataset.value);
+		switch (e.target.dataset.value) {
+			case "ageAsc": {
+				allUsers.sort(
+					(secondUser, firstUser) => secondUser.age - firstUser.age
+				);
+				dispatch(userSortByNumberAsc(allUsers));
+				setDropdownOpen(!dropdownOpen);
+				break;
+			}
+			case "ageDesc": {
+				allUsers.sort(
+					(secondUser, firstUser) => firstUser.age - secondUser.age
+				);
+				dispatch(userSortByNumberDesc(allUsers));
+				setDropdownOpen(!dropdownOpen);
+				break;
+			}
+			case "skillsAsc": {
+				allUsers.sort(
+					(seconcUser, firstUser) =>
+						seconcUser.skills.professionSkills -
+						firstUser.skills.professionSkills
+				);
+				dispatch(userSortByNumberAsc(allUsers));
+				setDropdownOpen(!dropdownOpen);
+				break;
+			}
+			case "skillsDesc": {
+				allUsers.sort(
+					(secondUser, firstUser) => secondUser.age - firstUser.age
+				);
+				dispatch(userSortByNumberDesc(allUsers));
+				setDropdownOpen(!dropdownOpen);
+				break;
+			}
+			default: {
+				setDropdownOpen(!dropdownOpen);
+				break;
+			}
+		}
 	};
 
-	const DropwdownList = () =>
+	const DropdownList = () =>
 		useMemo(() => (
 			<StyledDropdownList>
-				<div onClick={SortByAge} className="sort-item">
-					Sort by age
-				</div>
-				<div className="sort-item">Sort by skills</div>
-				<div className="sort-item">Sort by name</div>
-				<div className="sort-item">Sort by english</div>
+				<ul className="sort-items-container" onClick={SortByAge}>
+					<li data-value="ageAsc" className="sort-item">
+						Sort by age ascending
+					</li>
+					<li data-value="ageDesc" className="sort-item">
+						Sort by age decending
+					</li>
+					<li data-value="skillsAsc" className="sort-item">
+						Sort by skills ascending
+					</li>
+					<li data-value="skillsDesc" className="sort-item">
+						Sort by skills descending
+					</li>
+				</ul>
 			</StyledDropdownList>
 		));
 
 	return (
 		<div>
 			<StyledDropdownButton onClick={openDropdown}>
-				<select placeholder="Sort by age">
-					<option>Show age in ascending order</option>
-					<option>Show age by descending order</option>
-				</select>
+				<Sorting />
 			</StyledDropdownButton>
-			{/* {dropdownOpen && <DropwdownList />} */}
+			{dropdownOpen && <DropdownList />}
 		</div>
 	);
 };
@@ -52,27 +99,38 @@ const StyledDropdownButton = styled.button`
 `;
 
 const StyledDropdownList = styled.div`
-	padding: 8px 20px;
 	position: absolute;
-	top: 0;
-	right: 50px;
+	right: 0px;
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
+	transition: ease-out 4s;
 	border-radius: 6px;
 	background-color: #00a8ff;
 	color: white;
+
+	.sort-items-container {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
 	.sort-item {
-		width: 100%;
-		padding: 2px 0px;
-		border-bottom: 2px solid #00a8ff;
-		font-weight: 500;
-		text-align: left;
+		padding: 6px 10px;
 		cursor: pointer;
 	}
+
 	.sort-item:hover {
-		padding: 2px 0px;
-		border-bottom: 2px solid white;
-		transition: ease-out 0.3s;
+		background-color: #0083c5;
+	}
+
+	.sort-item:first-child {
+		border-top-left-radius: 6px;
+		border-top-right-radius: 6px;
+	}
+
+	.sort-item:last-child {
+		border-bottom-left-radius: 6px;
+		border-bottom-right-radius: 6px;
 	}
 `;

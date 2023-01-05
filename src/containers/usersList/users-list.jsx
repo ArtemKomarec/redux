@@ -77,7 +77,7 @@ export const UsersList = () => {
 						allUsers={allUsers}
 						pagesList={pagesList}
 					/>
-					<PaginationPasha />
+					{/* <PaginationPasha /> */}
 				</div>
 			</StyledUsersList>
 		</>
@@ -117,7 +117,7 @@ const StyledUsersList = styled.div`
 
 	.users-list-container {
 		width: 100%;
-		margin-top: 40px;
+		/* margin-top: 40px; */
 		display: grid;
 		justify-content: space-between;
 		grid-template-columns:

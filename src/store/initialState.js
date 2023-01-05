@@ -19,7 +19,7 @@ export const initialState = [
 			experience: "2",
 			english: "7",
 			communication: "5",
-			professionSkills: "8",
+			professionSkills: "1",
 		},
 	},
 	{
@@ -42,7 +42,7 @@ export const initialState = [
 			experience: "2",
 			english: "3",
 			communication: "5",
-			professionSkills: "8",
+			professionSkills: "3",
 		},
 	},
 	{
@@ -65,7 +65,7 @@ export const initialState = [
 			experience: "2",
 			english: "3",
 			communication: "5",
-			professionSkills: "8",
+			professionSkills: "4",
 		},
 	},
 	{
@@ -88,7 +88,7 @@ export const initialState = [
 			experience: "2",
 			english: "3",
 			communication: "5",
-			professionSkills: "8",
+			professionSkills: "2",
 		},
 	},
 	{
@@ -157,7 +157,7 @@ export const initialState = [
 			experience: "2",
 			english: "3",
 			communication: "5",
-			professionSkills: "8",
+			professionSkills: "5",
 		},
 	},
 	{
@@ -203,7 +203,7 @@ export const initialState = [
 			experience: "2",
 			english: "3",
 			communication: "5",
-			professionSkills: "8",
+			professionSkills: "6",
 		},
 	},
 	{
@@ -226,7 +226,7 @@ export const initialState = [
 			experience: "2",
 			english: "3",
 			communication: "5",
-			professionSkills: "8",
+			professionSkills: "7",
 		},
 	},
 	{
@@ -272,7 +272,7 @@ export const initialState = [
 			experience: "2",
 			english: "3",
 			communication: "5",
-			professionSkills: "8",
+			professionSkills: "9",
 		},
 	},
 	{
@@ -364,7 +364,7 @@ export const initialState = [
 			experience: "2",
 			english: "3",
 			communication: "5",
-			professionSkills: "8",
+			professionSkills: "10",
 		},
 	},
 	{
@@ -410,7 +410,7 @@ export const initialState = [
 			experience: "2",
 			english: "3",
 			communication: "5",
-			professionSkills: "8",
+			professionSkills: "4",
 		},
 	},
 	{
@@ -456,7 +456,7 @@ export const initialState = [
 			experience: "2",
 			english: "3",
 			communication: "5",
-			professionSkills: "8",
+			professionSkills: "2",
 		},
 	},
 	{
@@ -479,7 +479,7 @@ export const initialState = [
 			experience: "2",
 			english: "3",
 			communication: "5",
-			professionSkills: "8",
+			professionSkills: "1",
 		},
 	},
 ];

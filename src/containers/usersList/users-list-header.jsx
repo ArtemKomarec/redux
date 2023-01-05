@@ -16,12 +16,13 @@ export const UsersListHeader = () => {
 };
 
 export const StyledListHeader = styled.div`
+	width: 100%;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	position: relative;
 
 	.users-sorting {
-		align-self: flex-end;
+		margin-top: 40px;
 	}
 `;
