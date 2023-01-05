@@ -12,14 +12,12 @@ export const Dropdown = () => {
 
 	const dispatch = useDispatch();
 	const allUsers = useSelector(({ users }) => users);
-	console.log(allUsers);
 
 	const openDropdown = ({}) => {
 		setDropdownOpen(!dropdownOpen);
 	};
 
 	const SortByAge = (e) => {
-		console.log(e.target.dataset.value);
 		switch (e.target.dataset.value) {
 			case "ageAsc": {
 				allUsers.sort(

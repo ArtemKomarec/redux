@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { userAddAction } from "../../store/actionCreators/users";
 import { Select } from "../../components/select";
@@ -89,7 +89,9 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 				},
 			});
 		} else {
-			toast.error("Input number between 0 and 10");
+			toast.error("Input number between 0 and 10", {
+				toastId: "number",
+			});
 		}
 	};
 
@@ -105,7 +107,6 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 
 	return (
 		<StyledAdditionalInfo>
-			<ToastContainer />
 			<h1 className="user-additional-header">Social links</h1>
 			<UserSocialLinks user={user} changeSocials={changeSocials} />
 			<span className="divider"></span>

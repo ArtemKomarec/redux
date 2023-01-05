@@ -29,4 +29,8 @@ const StyledSelectMenu = styled.div`
 		border-radius: 6px;
 		border: 1px solid #c3b7b7;
 	}
+
+	.select-menu-container:focus-visible {
+		outline: none;
+	}
 `;

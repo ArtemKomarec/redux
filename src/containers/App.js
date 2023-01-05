@@ -7,11 +7,13 @@ import { NotFound } from "./not-found";
 import { UserPage } from "./userProfile/user-page";
 import { Home } from "./home";
 import { UsersList } from "./usersList/users-list";
+import { ToastContainer } from "react-toastify";
 
 function App() {
 	return (
 		<Provider store={store}>
 			<BrowserRouter>
+				<ToastContainer />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="add-user-form" element={<AddUserForm />} />

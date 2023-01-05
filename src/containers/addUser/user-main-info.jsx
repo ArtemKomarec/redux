@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const UserMainInfo = ({ user, setUser }) => {
@@ -22,7 +22,9 @@ export const UserMainInfo = ({ user, setUser }) => {
 			if (parseInt(e.target.value)) {
 				setUser({ ...user, [e.target.name]: e.target.value });
 			} else {
-				toast.error("Should write only numbers");
+				toast.error("Should write only numbers", {
+					toastId: "number",
+				});
 			}
 		}
 	};
@@ -40,7 +42,6 @@ export const UserMainInfo = ({ user, setUser }) => {
 
 	return (
 		<StyledNewUserAvatar>
-			<ToastContainer />
 			<img
 				className="new-user-avatar"
 				src={user.avatar}
