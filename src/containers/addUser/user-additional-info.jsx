@@ -26,7 +26,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 				position: toast.POSITION.TOP_RIGHT,
 			});
 		} else {
-			dispatch(userAddAction({ user, id }));
+			dispatch(userAddAction(user, id));
 			toast.success("User created !", {
 				position: toast.POSITION.TOP_RIGHT,
 			});

@@ -4,7 +4,7 @@ export const UserShortInfo = ({ user }) => {
 	return (
 		<StyledUserShortInfo className="user-short-info">
 			<img className="user-avatar" src={user.avatar} />
-			<h1 className="user-name">{user.name + " " + user.surname}</h1>
+			<h1 className="user-name">{user.name}</h1>
 			<p className="user-short-additional">{user.profession}</p>
 			<p className="user-short-additional">{user.city}</p>
 		</StyledUserShortInfo>
@@ -25,6 +25,7 @@ const StyledUserShortInfo = styled.div`
 		max-width: 150px;
 		width: 100%;
 		max-height: 150px;
+		border-radius: 25%;
 	}
 
 	.user-name {

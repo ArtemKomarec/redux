@@ -5,7 +5,7 @@ export const UserFullInfo = ({ user }) => {
 		<StyledUserFullInfo>
 			<div className="user-info-container">
 				<p>Full name</p>
-				<p className="social-link">{user.name + " " + user.surname}</p>
+				<p className="social-link">{user.name}</p>
 			</div>
 			<div className="user-info-container">
 				<p>Email</p>

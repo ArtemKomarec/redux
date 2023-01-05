@@ -2,6 +2,7 @@ import {
 	USER_DELETE_ACTION,
 	USER_ADD_ACTION,
 	USER_FAVOURITE_ACTION,
+	USERS_SORT_BY_AGE,
 } from "../actions/users";
 
 export const userDeleteAction = (id) => {
@@ -23,5 +24,12 @@ export const userFavouriteAction = (id, friend) => {
 		type: USER_FAVOURITE_ACTION,
 		id,
 		friend,
+	};
+};
+
+export const userSortByAge = (users) => {
+	return {
+		type: USERS_SORT_BY_AGE,
+		users,
 	};
 };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { PaginationPasha } from "../../components/pasha";
 import { Header } from "../header";
 import { Pagination } from "./pagination";
 import { UsersListHeader } from "./users-list-header";
@@ -42,7 +43,7 @@ export const UsersList = () => {
 			<Header />
 			<StyledUsersList>
 				<div className="users-list-wrapper">
-					<UsersListHeader />
+					<UsersListHeader allUsers={allUsers} />
 					<div className="users-list-container">
 						{currentPosts.map((user, index) => (
 							<Link
@@ -76,6 +77,7 @@ export const UsersList = () => {
 						allUsers={allUsers}
 						pagesList={pagesList}
 					/>
+					<PaginationPasha />
 				</div>
 			</StyledUsersList>
 		</>
@@ -115,6 +117,7 @@ const StyledUsersList = styled.div`
 
 	.users-list-container {
 		width: 100%;
+		margin-top: 40px;
 		display: grid;
 		justify-content: space-between;
 		grid-template-columns:
@@ -125,7 +128,6 @@ const StyledUsersList = styled.div`
 
 	.user-list-card {
 		height: 120px;
-		margin-top: 20px;
 		padding: 20px;
 		display: flex;
 		flex-direction: row;

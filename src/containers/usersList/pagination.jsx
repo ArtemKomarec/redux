@@ -16,6 +16,7 @@ export const Pagination = ({
 				<StyledPreviousArrow onClick={previousPage} currentPage={currentPage}>
 					<PaginationArrow />
 				</StyledPreviousArrow>
+
 				{pagesList.map((currentNumber) => (
 					<StyledListNumber
 						key={currentNumber}

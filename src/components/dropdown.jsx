@@ -1,18 +1,31 @@
 import { useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Sorting } from "../assets/icons/sorting";
+import { userSortByAge } from "../store/actionCreators/users";
 
 export const Dropdown = () => {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 
-	const openDropdown = () => {
+	const dispatch = useDispatch();
+	const allUsers = useSelector(({ users }) => users);
+
+	const openDropdown = ({}) => {
+		setDropdownOpen(!dropdownOpen);
+	};
+
+	const SortByAge = () => {
+		allUsers.sort((secondUser, firstUser) => secondUser.age - firstUser.age);
+		dispatch(userSortByAge(allUsers));
 		setDropdownOpen(!dropdownOpen);
 	};
 
 	const DropwdownList = () =>
 		useMemo(() => (
 			<StyledDropdownList>
-				<div className="sort-item">Sort by age</div>
+				<div onClick={SortByAge} className="sort-item">
+					Sort by age
+				</div>
 				<div className="sort-item">Sort by skills</div>
 				<div className="sort-item">Sort by name</div>
 				<div className="sort-item">Sort by english</div>
@@ -22,9 +35,12 @@ export const Dropdown = () => {
 	return (
 		<div>
 			<StyledDropdownButton onClick={openDropdown}>
-				<Sorting />
+				<select placeholder="Sort by age">
+					<option>Show age in ascending order</option>
+					<option>Show age by descending order</option>
+				</select>
 			</StyledDropdownButton>
-			{dropdownOpen && <DropwdownList />}
+			{/* {dropdownOpen && <DropwdownList />} */}
 		</div>
 	);
 };

@@ -2,6 +2,7 @@ import {
 	USER_DELETE_ACTION,
 	USER_ADD_ACTION,
 	USER_FAVOURITE_ACTION,
+	USERS_SORT_BY_AGE,
 } from "../actions/users";
 import { initialState } from "../initialState";
 
@@ -18,16 +19,16 @@ export const users = (state = initialState, action) => {
 			console.log(action);
 			const newUser = {
 				id: action.user.id,
-				name: action.user.user.name,
-				surname: action.user.user.surname,
-				age: action.user.user.age,
-				profession: action.user.user.profession,
-				email: action.user.user.email,
-				phone: action.user.user.phone,
-				avatar: action.user.user.avatar,
-				city: action.user.user.city,
-				skills: action.user.user.skills,
-				socials: action.user.user.socials,
+				name: action.user.name,
+				surname: action.user.surname,
+				age: action.user.age,
+				profession: action.user.profession,
+				email: action.user.email,
+				phone: action.user.phone,
+				avatar: action.user.avatar,
+				city: action.user.city,
+				skills: action.user.skills,
+				socials: action.user.socials,
 			};
 			newState.push(newUser);
 			return newState;
@@ -36,6 +37,13 @@ export const users = (state = initialState, action) => {
 			const [...newState] = state;
 			const index = state.findIndex((_, id) => id === action.id);
 			newState[index].friend = !action.friend;
+			return newState;
+		}
+		case USERS_SORT_BY_AGE: {
+			console.log(action);
+
+			const [...newState] = action.users;
+
 			return newState;
 		}
 		default:
