@@ -27,21 +27,20 @@ export const FieldLevelValidationExample = () => (
 				username: "",
 				email: "",
 			}}
-			onSubmit={(values) => {
-				// same shape as initial values
-				console.log(values);
-			}}
 		>
-			{({ errors, touched, validateField, validateForm }) => (
-				<Form>
-					{errors.email && touched.email && <div>{errors.email}</div>}
+			{({ errors, touched }) => (
+				<>
+					<Form>
+						<Field name="email" validate={validateEmail} />
+						{errors.email && touched.email && <div>{errors.email}</div>}
 
-					<Field name="email" placeholder="email" validate={validateEmail} />
-
-					<Field name="username" validate={validateUsername} />
-					{errors.username && touched.username && <div>{errors.username}</div>}
-					<button type="submit">Submit</button>
-				</Form>
+						<Field name="username" validate={validateUsername} />
+						{errors.username && touched.username && (
+							<div>{errors.username}</div>
+						)}
+						<button type="submit">Submit</button>
+					</Form>
+				</>
 			)}
 		</Formik>
 	</div>

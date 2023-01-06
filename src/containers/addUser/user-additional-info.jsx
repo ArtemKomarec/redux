@@ -150,7 +150,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 					/>
 				</div>
 			</div>
-			<button className="create-user-btn" onClick={handleSubmit}>
+			<button className="create-user-btn" type="submit">
 				Create user
 			</button>
 		</StyledAdditionalInfo>

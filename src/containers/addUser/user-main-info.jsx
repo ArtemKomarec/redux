@@ -2,178 +2,59 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Field, Form, Formik } from "formik";
+import { UserAddAvatar } from "./user-add-avatar";
 
-export const UserMainInfo = ({ user, setUser }) => {
-	const [userImage, setUserImage] = useState(null);
-	const textFields = ["name", "email", "profession", "city"];
-
-	const changeInput = (e) => {
-		if (e.target.value === "" && textFields.includes(e.target.name)) {
-			setUser({ ...user, [e.target.name]: e.target.value });
-		}
-		if (textFields.includes(e.target.name)) {
-			if (/[a-zA-Z]+/g.test(e.target.value)) {
-				setUser({ ...user, [e.target.name]: e.target.value });
-			}
-		} else if (e.target.name === "phone" || e.target.name === "age") {
-			if (e.target.value === "") {
-				setUser({ ...user, [e.target.name]: e.target.value });
-			}
-			if (parseInt(e.target.value)) {
-				setUser({ ...user, [e.target.name]: e.target.value });
-			} else {
-				toast.error("Should write only numbers", {
-					toastId: "number",
-				});
-			}
-		}
-	};
-
-	const handleUploadImage = (e) => {
-		setUserImage(e.target.files[0]);
-	};
-
-	useEffect(() => {
-		if (userImage) {
-			const image = URL.createObjectURL(userImage);
-			setUser({ ...user, avatar: image });
-		}
-	}, [userImage]);
-
+export const UserMainInfo = ({ user, setUser, values, errors, touched }) => {
 	return (
-		<StyledNewUserAvatar>
-			<img
-				className="new-user-avatar"
-				src={user.avatar}
-				alt={user.name + "avatar"}
-			/>
-			<label htmlFor="upload-image">
-				<span className="new-user-avatar-btn">Upload image</span>
-			</label>
-			<input
-				id="upload-image"
-				type="file"
-				name="avatar"
-				accept="image/"
-				style={{ display: "none" }}
-				onChange={handleUploadImage}
-			/>
-			<span className="divider"></span>
+		<StyledNewUserMainInfo>
+			<div className="divider"></div>
 			<div className="new-user-field-wrapper">
 				<div className="new-user-field-container">
-					<span>Name</span>
-					<input
+					<span className="new-user-field-label">Username</span>
+					<Field
+						style={
+							errors.username
+								? { border: "1px solid red" }
+								: { border: "1px solid #c3b7b7" }
+						}
 						className="new-user-field"
-						name="name"
-						placeholder="Type user full name"
-						type="text"
-						value={user.name}
-						onChange={changeInput}
+						name="username"
+						value={values.username}
+						placeholder="username"
 					/>
+					{errors.username && touched.username && (
+						<span>{errors.username}</span>
+					)}
 				</div>
 				<div className="new-user-field-container">
-					<span>Phone</span>
-					<input
-						className="new-user-field"
-						name="phone"
-						placeholder="Type user phone"
-						type="text"
-						value={user.phone}
-						onChange={changeInput}
-					/>
-				</div>
-				<div className="new-user-field-container">
-					<span>Age</span>
-					<input
-						className="new-user-field"
-						name="age"
-						placeholder="Type user age"
-						type="text"
-						maxLength={2}
-						value={user.age}
-						onChange={changeInput}
-					/>
-				</div>
-				<div className="new-user-field-container">
-					<span>Profession</span>
-					<input
-						className="new-user-field"
-						name="profession"
-						placeholder="Type user profession"
-						type="text"
-						value={user.profession}
-						onChange={changeInput}
-					/>
-				</div>
-				<div className="new-user-field-container">
-					<span>Email</span>
-					<input
+					<span className="new-user-field-label">Email</span>
+					<Field
+						style={
+							errors.email
+								? { border: "1px solid red" }
+								: { border: "1px solid #c3b7b7" }
+						}
 						className="new-user-field"
 						name="email"
-						placeholder="Type user email"
-						type="text"
-						value={user.email}
-						onChange={changeInput}
+						value={values.email}
+						placeholder="email"
 					/>
-				</div>
-				<div className="new-user-field-container">
-					<span>Address</span>
-					<input
-						className="new-user-field"
-						name="city"
-						placeholder="Type user address"
-						type="text"
-						value={user.city}
-						onChange={changeInput}
-					/>
+					{errors.email && touched.email && (
+						<span className="error-message-field">{errors.email}</span>
+					)}
 				</div>
 			</div>
-		</StyledNewUserAvatar>
+		</StyledNewUserMainInfo>
 	);
 };
 
-const StyledNewUserAvatar = styled.div`
-	max-width: 350px;
-	width: 100%;
-	padding: 20px 30px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 8px;
-	border-radius: 6px;
-	box-shadow: 0 4px 10px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
-	background-color: white;
-
-	.new-user-avatar {
-		width: 200px;
-		height: 200px;
-		border-radius: 50%;
-		margin-bottom: 14px;
-	}
-
-	.new-user-avatar-btn {
-		width: 170px;
-		padding: 6px 20px;
-		border-radius: 4px;
-		border: 2px solid #465374;
-
-		color: #e2e8f0;
-		background-color: #465374;
-		transition: 0.4s ease;
-
-		font-family: 500;
-		letter-spacing: 0.6px;
-		cursor: pointer;
-	}
-
-	.new-user-avatar-btn:hover {
-		background-color: white;
-		color: #465374;
-	}
+const StyledNewUserMainInfo = styled.div`
+	margin-top: 20px;
 
 	.divider {
 		width: 100%;
-		margin-top: 20px;
+		margin-top: 7px;
 		height: 2px;
 		background-color: #465374;
 	}
@@ -186,12 +67,12 @@ const StyledNewUserAvatar = styled.div`
 
 	.new-user-field-container {
 		width: 100%;
-		margin-top: 10px;
+		margin-top: 24px;
 		display: flex;
 		flex-direction: column;
 		gap: 6px;
 
-		span {
+		.new-user-field-label {
 			color: #646161;
 			font-weight: 500;
 			opacity: 0.7;
@@ -209,5 +90,10 @@ const StyledNewUserAvatar = styled.div`
 	.new-user-field:focus {
 		border: 1px solid #064f87cc;
 		outline: #064f87cc;
+	}
+
+	.error-message-field {
+		color: red;
+		font-size: 10px;
 	}
 `;
