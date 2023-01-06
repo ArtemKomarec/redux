@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Header } from "../header";
 import { UserMainInfo } from "./user-main-info";
@@ -7,6 +7,9 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { UserAddAvatar } from "./user-add-avatar";
 import { FieldLevelValidationExample } from "./aaa";
+import { phoneRegExp } from "../../assets/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { userAddAction } from "../../store/actionCreators/users";
 
 export const AddUserForm = () => {
 	const [user, setUser] = useState({
@@ -32,13 +35,35 @@ export const AddUserForm = () => {
 		},
 	});
 
+	const dispatch = useDispatch();
+	const id = useSelector(({ users }) => users.length);
+
 	const addUserSchema = Yup.object().shape({
 		username: Yup.string()
-			.min(5, "Username should be more then 5 letters")
-			.max(30, " Username should be less then 30 letters")
+			.min(2, "Username should be more then 2 letters")
+			.max(30, "Username should be less then 30 letters")
 			.required("Required"),
 		email: Yup.string().email("Invalid email").required("Required"),
+		age: Yup.number()
+			.typeError("Age must be a number")
+			.required("Required")
+			.positive("Age must be posititve number")
+			.min(18, "Age must be 18 or more")
+			.max(60, "Age must be 60 or less"),
+		phone: Yup.string()
+			.required("Required")
+			.matches(phoneRegExp, "Phone type example +375296883822"),
+		profession: Yup.string()
+			.required("Required")
+			.min(4, "Profession should be more then 4 letters")
+			.max(30, "Profession should be less then 30 letters"),
+		city: Yup.string()
+			.required("Required")
+			.min(2, "Profession should be more then 2 letters")
+			.max(50, "Profession should be less then 50 letters"),
 	});
+
+	// dispatch(userAddAction(user, id));
 
 	return (
 		<>
@@ -48,11 +73,44 @@ export const AddUserForm = () => {
 					initialValues={{
 						username: "",
 						email: "",
+						age: "",
+						phone: "",
+						profession: "",
+						city: "",
 					}}
 					validationSchema={addUserSchema}
 					onSubmit={(values) => {
 						// same shape as initial values
-						console.log(values);
+						// console.log(values.username);
+						setUser((user) => {
+							dispatch(
+								userAddAction(
+									{
+										...user,
+										name: values.username,
+										age: values.age,
+										email: values.email,
+										phone: values.phone,
+										profession: values.profession,
+										city: values.city,
+									},
+									id
+								)
+							);
+							return {
+								...user,
+								name: values.username,
+								age: values.age,
+								email: values.email,
+								phone: values.phone,
+								profession: values.profession,
+								city: values.city,
+							};
+						});
+
+						// dispatch(userA	ddAction(user, id));
+
+						// console.log(values);
 					}}
 				>
 					{({ values, errors, touched }) => (
@@ -61,8 +119,6 @@ export const AddUserForm = () => {
 								<div className="user-main-info">
 									<UserAddAvatar user={user} />
 									<UserMainInfo
-										user={user}
-										setUser={setUser}
 										values={values}
 										errors={errors}
 										touched={touched}

@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Field, Form, Formik } from "formik";
-import { UserAddAvatar } from "./user-add-avatar";
+import { Field } from "formik";
 
-export const UserMainInfo = ({ user, setUser, values, errors, touched }) => {
+export const UserMainInfo = ({ values, errors, touched }) => {
 	return (
 		<StyledNewUserMainInfo>
 			<div className="divider"></div>
@@ -21,10 +18,10 @@ export const UserMainInfo = ({ user, setUser, values, errors, touched }) => {
 						className="new-user-field"
 						name="username"
 						value={values.username}
-						placeholder="username"
+						placeholder="Username"
 					/>
-					{errors.username && touched.username && (
-						<span>{errors.username}</span>
+					{errors.username && (
+						<span className="error-message-field">{errors.username}</span>
 					)}
 				</div>
 				<div className="new-user-field-container">
@@ -38,10 +35,78 @@ export const UserMainInfo = ({ user, setUser, values, errors, touched }) => {
 						className="new-user-field"
 						name="email"
 						value={values.email}
-						placeholder="email"
+						placeholder="Email"
 					/>
-					{errors.email && touched.email && (
+					{errors.email && (
 						<span className="error-message-field">{errors.email}</span>
+					)}
+				</div>
+				<div className="new-user-field-container">
+					<span className="new-user-field-label">Age</span>
+					<Field
+						style={
+							errors.age
+								? { border: "1px solid red" }
+								: { border: "1px solid #c3b7b7" }
+						}
+						className="new-user-field"
+						name="age"
+						value={values.age}
+						placeholder="Age"
+					/>
+					{errors.age && (
+						<span className="error-message-field">{errors.age}</span>
+					)}
+				</div>
+				<div className="new-user-field-container">
+					<span className="new-user-field-label">Phone</span>
+					<Field
+						style={
+							errors.phone
+								? { border: "1px solid red" }
+								: { border: "1px solid #c3b7b7" }
+						}
+						className="new-user-field"
+						placeholder="Phone"
+						name="phone"
+						value={values.phone}
+					/>
+					{errors.phone && (
+						<span className="error-message-field">{errors.phone}</span>
+					)}
+				</div>
+				<div className="new-user-field-container">
+					<span className="new-user-field-label">Profession</span>
+					<Field
+						style={
+							errors.profession
+								? { border: "1px solid red" }
+								: { border: "1px solid #c3b7b7" }
+						}
+						className="new-user-field"
+						placeholder="Profession"
+						name="profession"
+						value={values.profession}
+					/>
+					{errors.profession && (
+						<span className="error-message-field">{errors.profession}</span>
+					)}
+				</div>
+				<div className="new-user-field-container">
+					<span className="new-user-field-label">City</span>
+					<Field
+						style={
+							errors.city
+								? { border: "1px solid red" }
+								: { border: "1px solid #c3b7b7" }
+						}
+						className="new-user-field"
+						placeholder="City"
+						name="city"
+						value={values.city}
+					/>
+					{errors.city && (
+						<span className="error-message-field">{errors.city}</span>
 					)}
 				</div>
 			</div>
