@@ -25,6 +25,14 @@ export const UserAddAvatar = ({ user, setUser }) => {
 			<label htmlFor="upload-image">
 				<span className="new-user-avatar-btn">Upload image</span>
 			</label>
+			<input
+				id="upload-image"
+				type="file"
+				name="avatar"
+				accept="image/"
+				style={{ display: "none" }}
+				onChange={handleUploadImage}
+			/>
 		</StyledUserAvatar>
 	);
 };

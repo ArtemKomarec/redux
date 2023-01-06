@@ -10,102 +10,72 @@ export const UserMainInfo = ({ values, errors, touched }) => {
 				<div className="new-user-field-container">
 					<span className="new-user-field-label">Username</span>
 					<Field
-						style={
-							errors.username
-								? { border: "1px solid red" }
-								: { border: "1px solid #c3b7b7" }
-						}
 						className="new-user-field"
 						name="username"
 						value={values.username}
 						placeholder="Username"
 					/>
-					{errors.username && (
+					{errors.username && touched.username && (
 						<span className="error-message-field">{errors.username}</span>
 					)}
 				</div>
 				<div className="new-user-field-container">
 					<span className="new-user-field-label">Email</span>
 					<Field
-						style={
-							errors.email
-								? { border: "1px solid red" }
-								: { border: "1px solid #c3b7b7" }
-						}
 						className="new-user-field"
 						name="email"
 						value={values.email}
 						placeholder="Email"
 					/>
-					{errors.email && (
+					{errors.email && touched.email && (
 						<span className="error-message-field">{errors.email}</span>
 					)}
 				</div>
 				<div className="new-user-field-container">
 					<span className="new-user-field-label">Age</span>
 					<Field
-						style={
-							errors.age
-								? { border: "1px solid red" }
-								: { border: "1px solid #c3b7b7" }
-						}
 						className="new-user-field"
 						name="age"
 						value={values.age}
 						placeholder="Age"
 					/>
-					{errors.age && (
+					{errors.age && touched.age && (
 						<span className="error-message-field">{errors.age}</span>
 					)}
 				</div>
 				<div className="new-user-field-container">
 					<span className="new-user-field-label">Phone</span>
 					<Field
-						style={
-							errors.phone
-								? { border: "1px solid red" }
-								: { border: "1px solid #c3b7b7" }
-						}
 						className="new-user-field"
 						placeholder="Phone"
 						name="phone"
 						value={values.phone}
 					/>
-					{errors.phone && (
+					{errors.phone && touched.phone && (
 						<span className="error-message-field">{errors.phone}</span>
 					)}
 				</div>
 				<div className="new-user-field-container">
 					<span className="new-user-field-label">Profession</span>
 					<Field
-						style={
-							errors.profession
-								? { border: "1px solid red" }
-								: { border: "1px solid #c3b7b7" }
-						}
 						className="new-user-field"
 						placeholder="Profession"
 						name="profession"
 						value={values.profession}
 					/>
-					{errors.profession && (
+					{errors.profession && touched.profession && (
 						<span className="error-message-field">{errors.profession}</span>
 					)}
 				</div>
 				<div className="new-user-field-container">
 					<span className="new-user-field-label">City</span>
 					<Field
-						style={
-							errors.city
-								? { border: "1px solid red" }
-								: { border: "1px solid #c3b7b7" }
-						}
 						className="new-user-field"
 						placeholder="City"
 						name="city"
 						value={values.city}
 					/>
-					{errors.city && (
+					{errors.city && touched.city && (
 						<span className="error-message-field">{errors.city}</span>
 					)}
 				</div>

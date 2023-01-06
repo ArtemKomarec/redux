@@ -6,7 +6,6 @@ import { UserAdditionalInfo } from "./user-additional-info";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { UserAddAvatar } from "./user-add-avatar";
-import { FieldLevelValidationExample } from "./aaa";
 import { phoneRegExp } from "../../assets/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { userAddAction } from "../../store/actionCreators/users";
@@ -63,8 +62,6 @@ export const AddUserForm = () => {
 			.max(50, "Profession should be less then 50 letters"),
 	});
 
-	// dispatch(userAddAction(user, id));
-
 	return (
 		<>
 			<Header />
@@ -80,8 +77,6 @@ export const AddUserForm = () => {
 					}}
 					validationSchema={addUserSchema}
 					onSubmit={(values) => {
-						// same shape as initial values
-						// console.log(values.username);
 						setUser((user) => {
 							dispatch(
 								userAddAction(
@@ -107,17 +102,13 @@ export const AddUserForm = () => {
 								city: values.city,
 							};
 						});
-
-						// dispatch(userA	ddAction(user, id));
-
-						// console.log(values);
 					}}
 				>
 					{({ values, errors, touched }) => (
 						<>
 							<Form className="user-form">
 								<div className="user-main-info">
-									<UserAddAvatar user={user} />
+									<UserAddAvatar user={user} setUser={setUser} />
 									<UserMainInfo
 										values={values}
 										errors={errors}
@@ -135,7 +126,6 @@ export const AddUserForm = () => {
 						</>
 					)}
 				</Formik>
-				{/* <FieldLevelValidationExample /> */}
 			</UserFormWrapper>
 		</>
 	);
