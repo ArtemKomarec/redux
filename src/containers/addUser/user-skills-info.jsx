@@ -2,81 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { userAddAction } from "../../store/actionCreators/users";
 import { Select } from "../../components/select";
 import { englishLvl } from "../../assets/constants";
 import { UserSocialLinks } from "./user-social-links.jsx";
 
-export const UserAdditionalInfo = ({ user, setUser }) => {
-	const dispatch = useDispatch();
-	const id = useSelector(({ users }) => users.length);
+export const UserSkillsInfo = ({ user, setUser, values, errors, touched }) => {
 	const textFields = ["website", "github", "instagram", "facebook"];
-
-	const handleSubmit = () => {
-		console.log(user);
-		if (
-			user.name === "" ||
-			user.age === "" ||
-			user.email === "" ||
-			user.profession === "" ||
-			user.phone === "" ||
-			user.city === ""
-		) {
-			toast.error("Fill all fields !", {
-				position: toast.POSITION.TOP_RIGHT,
-			});
-		} else {
-			dispatch(userAddAction(user, id));
-			toast.success("User created !", {
-				position: toast.POSITION.TOP_RIGHT,
-			});
-			setUser({
-				name: "",
-				age: "",
-				email: "",
-				phone: "",
-				profession: "",
-				avatar:
-					"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
-				city: "",
-				skills: {
-					experience: "",
-					english: "",
-					communication: "",
-					professionSkills: "",
-				},
-				socials: [
-					{ name: "website", website: "" },
-					{ name: "github", github: "" },
-					{ name: "instagram", instagram: "" },
-					{ name: "facebook", facebook: "" },
-				],
-			});
-		}
-	};
-
-	const changeSocials = (e, index) => {
-		if (e.target.value === "" && textFields.includes(e.target.name)) {
-			setUser({ ...user, socials: { [e.target.name]: e.target.value } });
-		}
-		if (textFields.includes(e.target.name)) {
-			if (/[a-zA-Z]+/g.test(e.target.value)) {
-				setUser(({ socials }) => {
-					return {
-						...user,
-						socials: (() => {
-							const nSocials = [...socials];
-							nSocials[index] = {
-								...nSocials[index],
-								[e.target.name]: e.target.value,
-							};
-							return nSocials;
-						})(),
-					};
-				});
-			}
-		}
-	};
 
 	const changeSkills = (e) => {
 		console.log(e.target.value);
@@ -106,9 +37,7 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 	};
 
 	return (
-		<StyledAdditionalInfo>
-			<h1 className="user-additional-header">Social links</h1>
-			<UserSocialLinks user={user} changeSocials={changeSocials} />
+		<StyledSkillsInfo>
 			<span className="divider"></span>
 			<h1>Skills</h1>
 			<div className="social-links-wrapper">
@@ -153,20 +82,11 @@ export const UserAdditionalInfo = ({ user, setUser }) => {
 			<button className="create-user-btn" type="submit">
 				Create user
 			</button>
-		</StyledAdditionalInfo>
+		</StyledSkillsInfo>
 	);
 };
 
-const StyledAdditionalInfo = styled.div`
-	max-width: 700px;
-	width: 100%;
-	padding: 20px 30px;
-	display: flex;
-	flex-direction: column;
-	border-radius: 6px;
-	box-shadow: 0 4px 10px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
-	background-color: white;
-
+const StyledSkillsInfo = styled.div`
 	.user-additional-header {
 		align-self: flex-start;
 	}

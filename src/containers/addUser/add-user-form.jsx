@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { Header } from "../header";
 import { UserMainInfo } from "./user-main-info";
-import { UserAdditionalInfo } from "./user-additional-info";
+import { UserSkillsInfo } from "./user-skills-info";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { UserAddAvatar } from "./user-add-avatar";
-import { phoneRegExp } from "../../assets/constants";
+import { phoneRegExp, urlRegExp } from "../../assets/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { userAddAction } from "../../store/actionCreators/users";
+import { UserSocialLinks } from "./user-social-links";
 
 export const AddUserForm = () => {
 	const [user, setUser] = useState({
@@ -20,12 +21,10 @@ export const AddUserForm = () => {
 		avatar:
 			"https://www.shareicon.net/data/512x512/2016/07/26/802043_man_512x512.png",
 		city: "",
-		socials: [
-			{ name: "website", website: "" },
-			{ name: "github", github: "" },
-			{ name: "instagram", instagram: "" },
-			{ name: "facebook", facebook: "" },
-		],
+		website: "",
+		github: "",
+		instagram: "",
+		facebook: "",
 		skills: {
 			experience: "",
 			english: "",
@@ -36,6 +35,11 @@ export const AddUserForm = () => {
 
 	const dispatch = useDispatch();
 	const id = useSelector(({ users }) => users.length);
+
+	// user page show social links
+	// validate 1 - 10 values
+	// clear inputs
+	// add toast to success
 
 	const addUserSchema = Yup.object().shape({
 		username: Yup.string()
@@ -60,6 +64,18 @@ export const AddUserForm = () => {
 			.required("Required")
 			.min(2, "Profession should be more then 2 letters")
 			.max(50, "Profession should be less then 50 letters"),
+		website: Yup.string()
+			.required("Required")
+			.matches(urlRegExp, "invalid website url"),
+		github: Yup.string()
+			.required("Required")
+			.matches(urlRegExp, "invalid gihtub url"),
+		instagram: Yup.string()
+			.required("Required")
+			.matches(urlRegExp, "invalid instagram url"),
+		facebook: Yup.string()
+			.required("Required")
+			.matches(urlRegExp, "invalid facebook url"),
 	});
 
 	return (
@@ -74,9 +90,14 @@ export const AddUserForm = () => {
 						phone: "",
 						profession: "",
 						city: "",
+						website: "",
+						github: "",
+						instagram: "",
+						facebook: "",
 					}}
 					validationSchema={addUserSchema}
 					onSubmit={(values) => {
+						console.log(values);
 						setUser((user) => {
 							dispatch(
 								userAddAction(
@@ -88,6 +109,10 @@ export const AddUserForm = () => {
 										phone: values.phone,
 										profession: values.profession,
 										city: values.city,
+										website: values.website,
+										github: values.github,
+										instagram: values.instagram,
+										facebook: values.facebook,
 									},
 									id
 								)
@@ -100,6 +125,10 @@ export const AddUserForm = () => {
 								phone: values.phone,
 								profession: values.profession,
 								city: values.city,
+								website: values.website,
+								github: values.github,
+								instagram: values.instagram,
+								facebook: values.facebook,
 							};
 						});
 					}}
@@ -115,13 +144,21 @@ export const AddUserForm = () => {
 										touched={touched}
 									/>
 								</div>
-								<UserAdditionalInfo
-									user={user}
-									setUser={setUser}
-									values={values}
-									errors={errors}
-									touched={touched}
-								/>
+								<div className="user-additional-info">
+									<h1 className="user-additional-header">Social links</h1>
+									<UserSocialLinks
+										values={values}
+										errors={errors}
+										touched={touched}
+									/>
+									<UserSkillsInfo
+										user={user}
+										setUser={setUser}
+										values={values}
+										errors={errors}
+										touched={touched}
+									/>
+								</div>
 							</Form>
 						</>
 					)}
@@ -148,6 +185,17 @@ const UserFormWrapper = styled.div`
 		flex-direction: column;
 		align-items: center;
 		gap: 8px;
+		border-radius: 6px;
+		box-shadow: 0 4px 10px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+		background-color: white;
+	}
+
+	.user-additional-info {
+		max-width: 700px;
+		width: 100%;
+		padding: 20px 30px;
+		display: flex;
+		flex-direction: column;
 		border-radius: 6px;
 		box-shadow: 0 4px 10px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
 		background-color: white;

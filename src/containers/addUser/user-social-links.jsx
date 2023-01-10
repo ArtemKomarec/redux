@@ -1,20 +1,57 @@
+import { Field } from "formik";
 import styled from "styled-components";
 
-export const UserSocialLinks = ({ user, changeSocials }) => {
+export const UserSocialLinks = ({ values, errors, touched }) => {
 	return (
 		<SocialLinksWrapper>
-			{user.socials.map((currentSocial, index) => (
-				<div className="social-link-container" key={currentSocial.name}>
-					<span>{currentSocial.name}</span>
-					<input
-						className="new-user-field"
-						name={currentSocial.name}
-						value={user.socials[index][currentSocial.name]}
-						placeholder="Enter your gihtub link"
-						onChange={(e) => changeSocials(e, index)}
-					/>
-				</div>
-			))}
+			<div className="social-link-container">
+				<span className="social-link-label">Website</span>
+				<Field
+					className="new-user-field"
+					name="website"
+					value={values.website}
+					placeholder="Enter your website link"
+				/>
+				{errors.website && touched.website && (
+					<span className="error-message-field">{errors.website}</span>
+				)}
+			</div>
+			<div className="social-link-container">
+				<span>Github</span>
+				<Field
+					className="new-user-field"
+					name="github"
+					value={values.github}
+					placeholder="Enter your website link"
+				/>
+				{errors.github && touched.github && (
+					<span className="error-message-field">{errors.github}</span>
+				)}
+			</div>
+			<div className="social-link-container">
+				<span>Instagram</span>
+				<Field
+					className="new-user-field"
+					name="instagram"
+					value={values.instagram}
+					placeholder="Enter your website link"
+				/>
+				{errors.instagram && touched.instagram && (
+					<span className="error-message-field">{errors.instagram}</span>
+				)}
+			</div>
+			<div className="social-link-container">
+				<span>Facebook</span>
+				<Field
+					className="new-user-field"
+					name="facebook"
+					value={values.facebook}
+					placeholder="Enter your website link"
+				/>
+				{errors.facebook && touched.facebook && (
+					<span className="error-message-field">{errors.facebook}</span>
+				)}
+			</div>
 		</SocialLinksWrapper>
 	);
 };
@@ -30,14 +67,10 @@ const SocialLinksWrapper = styled.div`
 		display: flex;
 		flex-direction: column;
 
-		span {
+		.social-link-label {
 			color: #646161;
 			font-weight: 500;
 			opacity: 0.7;
-		}
-
-		span::first-letter {
-			text-transform: capitalize;
 		}
 	}
 
@@ -58,5 +91,10 @@ const SocialLinksWrapper = styled.div`
 	.new-user-field:focus {
 		border: 1px solid #064f87cc;
 		outline: #064f87cc;
+	}
+
+	.error-message-field {
+		color: red;
+		font-size: 10px;
 	}
 `;
