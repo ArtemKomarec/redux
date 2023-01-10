@@ -4,9 +4,8 @@ import { Header } from "../header";
 import { UserMainInfo } from "./user-main-info";
 import { UserSkillsInfo } from "./user-skills-info";
 import { Form, Formik } from "formik";
-import * as Yup from "yup";
 import { UserAddAvatar } from "./user-add-avatar";
-import { phoneRegExp, urlRegExp } from "../../assets/constants";
+import { addUserSchema } from "../../assets/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { userAddAction } from "../../store/actionCreators/users";
 import { UserSocialLinks } from "./user-social-links";
@@ -36,47 +35,9 @@ export const AddUserForm = () => {
 	const dispatch = useDispatch();
 	const id = useSelector(({ users }) => users.length);
 
-	// user page show social links
 	// validate 1 - 10 values
 	// clear inputs
 	// add toast to success
-
-	const addUserSchema = Yup.object().shape({
-		username: Yup.string()
-			.min(2, "Username should be more then 2 letters")
-			.max(30, "Username should be less then 30 letters")
-			.required("Required"),
-		email: Yup.string().email("Invalid email").required("Required"),
-		age: Yup.number()
-			.typeError("Age must be a number")
-			.required("Required")
-			.positive("Age must be posititve number")
-			.min(18, "Age must be 18 or more")
-			.max(60, "Age must be 60 or less"),
-		phone: Yup.string()
-			.required("Required")
-			.matches(phoneRegExp, "Phone type example +375296883822"),
-		profession: Yup.string()
-			.required("Required")
-			.min(4, "Profession should be more then 4 letters")
-			.max(30, "Profession should be less then 30 letters"),
-		city: Yup.string()
-			.required("Required")
-			.min(2, "Profession should be more then 2 letters")
-			.max(50, "Profession should be less then 50 letters"),
-		website: Yup.string()
-			.required("Required")
-			.matches(urlRegExp, "invalid website url"),
-		github: Yup.string()
-			.required("Required")
-			.matches(urlRegExp, "invalid gihtub url"),
-		instagram: Yup.string()
-			.required("Required")
-			.matches(urlRegExp, "invalid instagram url"),
-		facebook: Yup.string()
-			.required("Required")
-			.matches(urlRegExp, "invalid facebook url"),
-	});
 
 	return (
 		<>

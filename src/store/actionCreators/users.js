@@ -17,6 +17,7 @@ export const userAddAction = (user, id) => {
 	return {
 		type: USER_ADD_ACTION,
 		user,
+		id,
 	};
 };
 

@@ -18,8 +18,15 @@ export const users = (state = initialState, action) => {
 		case USER_ADD_ACTION: {
 			const [...newState] = state;
 			console.log(action);
+			const socials = [
+				{ name: "website", link: action.user.website },
+				{ name: "github", link: action.user.github },
+				{ name: "instagram", link: action.user.instagram },
+				{ name: "facebook", link: action.user.facebook },
+			];
+
 			const newUser = {
-				id: action.user.id,
+				id: action.id,
 				name: action.user.name,
 				surname: action.user.surname,
 				age: action.user.age,
@@ -29,7 +36,7 @@ export const users = (state = initialState, action) => {
 				avatar: action.user.avatar,
 				city: action.user.city,
 				skills: action.user.skills,
-				socials: action.user.socials,
+				socials,
 			};
 			newState.push(newUser);
 			return newState;

@@ -8,7 +8,7 @@ export const UserSocials = ({ socials }) => {
 	const icons = [<Website />, <Github />, <Instagram />, <Facebook />];
 	return (
 		<StyledUserSocials className="user-socials-wrapper">
-			{socials.map((currentSocial, index) => (
+			{socials.socials.map((currentSocial, index) => (
 				<div
 					className="user-social-container"
 					key={currentSocial.name + currentSocial.link}
@@ -19,18 +19,14 @@ export const UserSocials = ({ socials }) => {
 					</span>
 					<a
 						target="_blank"
-						href={currentSocial[currentSocial.name]}
+						href={currentSocial.link}
 						rel="noopener noreferrer"
 						className="social-link"
 						style={
-							currentSocial[currentSocial.name]
-								? { color: "#055dbb" }
-								: { color: " #6c757d" }
+							currentSocial.link ? { color: "#055dbb" } : { color: " #6c757d" }
 						}
 					>
-						{currentSocial[currentSocial.name]
-							? `${currentSocial[currentSocial.name]}`
-							: "No website"}
+						{currentSocial.link ? `${currentSocial.link}` : "No website"}
 					</a>
 				</div>
 			))}

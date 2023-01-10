@@ -14,7 +14,7 @@ export const UserPage = () => {
 			<StyledUserPage>
 				<div className="left-column-wrap">
 					<UserShortInfo user={user.state} />
-					<UserSocials socials={user.state.socials} />
+					<UserSocials socials={user.state} />
 				</div>
 				<div className="right-column-wrap">
 					<UserFullInfo user={user.state}></UserFullInfo>

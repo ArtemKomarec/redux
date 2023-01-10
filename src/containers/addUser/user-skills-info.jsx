@@ -1,14 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Select } from "../../components/select";
 import { englishLvl } from "../../assets/constants";
-import { UserSocialLinks } from "./user-social-links.jsx";
 
 export const UserSkillsInfo = ({ user, setUser, values, errors, touched }) => {
-	const textFields = ["website", "github", "instagram", "facebook"];
-
 	const changeSkills = (e) => {
 		console.log(e.target.value);
 		if (e.target.value >= 0 && e.target.value < 11) {
