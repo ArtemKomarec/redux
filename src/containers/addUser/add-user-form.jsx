@@ -24,12 +24,10 @@ export const AddUserForm = () => {
 		github: "",
 		instagram: "",
 		facebook: "",
-		skills: {
-			experience: "",
-			english: "",
-			communication: "",
-			professionSkills: "",
-		},
+		experience: "",
+		english: "",
+		communication: "",
+		professionSkills: "",
 	});
 
 	const dispatch = useDispatch();
@@ -55,6 +53,10 @@ export const AddUserForm = () => {
 						github: "",
 						instagram: "",
 						facebook: "",
+						experience: "",
+						english: "",
+						communication: "",
+						professionSkills: "",
 					}}
 					validationSchema={addUserSchema}
 					onSubmit={(values) => {
@@ -74,6 +76,10 @@ export const AddUserForm = () => {
 										github: values.github,
 										instagram: values.instagram,
 										facebook: values.facebook,
+										experience: values.experience,
+										english: values.english,
+										communication: values.communication,
+										professionSkills: values.professionSkills,
 									},
 									id
 								)
@@ -90,6 +96,10 @@ export const AddUserForm = () => {
 								github: values.github,
 								instagram: values.instagram,
 								facebook: values.facebook,
+								experience: values.experience,
+								english: values.english,
+								communication: values.communication,
+								professionSkills: values.professionSkills,
 							};
 						});
 					}}
@@ -113,8 +123,6 @@ export const AddUserForm = () => {
 										touched={touched}
 									/>
 									<UserSkillsInfo
-										user={user}
-										setUser={setUser}
 										values={values}
 										errors={errors}
 										touched={touched}

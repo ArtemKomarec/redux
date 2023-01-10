@@ -24,7 +24,12 @@ export const users = (state = initialState, action) => {
 				{ name: "instagram", link: action.user.instagram },
 				{ name: "facebook", link: action.user.facebook },
 			];
-
+			const skills = {
+				experience: action.user.experience,
+				communication: action.user.communication,
+				professionSkills: action.user.professionSkills,
+				english: action.user.english,
+			};
 			const newUser = {
 				id: action.id,
 				name: action.user.name,
@@ -35,7 +40,7 @@ export const users = (state = initialState, action) => {
 				phone: action.user.phone,
 				avatar: action.user.avatar,
 				city: action.user.city,
-				skills: action.user.skills,
+				skills,
 				socials,
 			};
 			newState.push(newUser);

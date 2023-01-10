@@ -1,9 +1,10 @@
+import { Field } from "formik";
 import styled from "styled-components";
 
 export const Select = ({ data, selectHandle }) => {
 	return (
-		<StyledSelectMenu>
-			<select className="select-menu-container" onChange={selectHandle}>
+		<Field>
+			<select className="select-menu-container">
 				<option value="0">Choose option...</option>
 				{data.map((currentItem, index) => (
 					<option
@@ -14,7 +15,7 @@ export const Select = ({ data, selectHandle }) => {
 					</option>
 				))}
 			</select>
-		</StyledSelectMenu>
+		</Field>
 	);
 };
 

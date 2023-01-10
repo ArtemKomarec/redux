@@ -49,16 +49,27 @@ export const addUserSchema = Yup.object().shape({
 		.required("Required")
 		.min(2, "Profession should be more then 2 letters")
 		.max(50, "Profession should be less then 50 letters"),
-	website: Yup.string()
+	website: Yup.string().matches(urlRegExp, "invalid website url"),
+	github: Yup.string().matches(urlRegExp, "invalid gihtub url"),
+	instagram: Yup.string().matches(urlRegExp, "invalid instagram url"),
+	facebook: Yup.string().matches(urlRegExp, "invalid facebook url"),
+	experience: Yup.number()
+		.typeError("Age must be a number")
 		.required("Required")
-		.matches(urlRegExp, "invalid website url"),
-	github: Yup.string()
+		.positive("Age must be posititve number")
+		.min(0, "Age must be 0 or more")
+		.max(10, "Age must be 10 or less"),
+	// english: values.english,
+	communication: Yup.number()
+		.typeError("Age must be a number")
 		.required("Required")
-		.matches(urlRegExp, "invalid gihtub url"),
-	instagram: Yup.string()
+		.positive("Age must be posititve number")
+		.min(0, "Age must be 0 or more")
+		.max(10, "Age must be 10 or less"),
+	professionSkills: Yup.number()
+		.typeError("Age must be a number")
 		.required("Required")
-		.matches(urlRegExp, "invalid instagram url"),
-	facebook: Yup.string()
-		.required("Required")
-		.matches(urlRegExp, "invalid facebook url"),
+		.positive("Age must be posititve number")
+		.min(0, "Age must be 0 or more")
+		.max(10, "Age must be 10 or less"),
 });

@@ -3,35 +3,9 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Select } from "../../components/select";
 import { englishLvl } from "../../assets/constants";
+import { Field } from "formik";
 
-export const UserSkillsInfo = ({ user, setUser, values, errors, touched }) => {
-	const changeSkills = (e) => {
-		console.log(e.target.value);
-		if (e.target.value >= 0 && e.target.value < 11) {
-			setUser({
-				...user,
-				skills: {
-					...user.skills,
-					[e.target.name]: e.target.value,
-				},
-			});
-		} else {
-			toast.error("Input number between 0 and 10", {
-				toastId: "number",
-			});
-		}
-	};
-
-	const selectEnglishLvl = (e) => {
-		setUser({
-			...user,
-			skills: {
-				...user.skills,
-				english: e.target.value,
-			},
-		});
-	};
-
+export const UserSkillsInfo = ({ values, errors, touched }) => {
 	return (
 		<StyledSkillsInfo>
 			<span className="divider"></span>
@@ -39,40 +13,54 @@ export const UserSkillsInfo = ({ user, setUser, values, errors, touched }) => {
 			<div className="social-links-wrapper">
 				<div className="social-link-container">
 					<span> Experience in years</span>
-					<input
+					<Field
 						className="new-user-field"
 						name="experience"
-						value={user.skills.experience}
-						type="number"
-						placeholder="Enter value between 1 and 10"
-						onChange={changeSkills}
+						value={values.experience}
+						placeholder="Enter value between 0 and 10"
 					/>
+					{errors.experience && touched.experience && (
+						<span className="error-message-field">{errors.experience}</span>
+					)}
 				</div>
 				<div className="social-link-container">
 					<span>Communication </span>
-					<input
+					<Field
 						className="new-user-field"
-						value={user.skills.communication}
-						maxLength={2}
 						name="communication"
-						placeholder="Enter value between 1 and 10"
-						onChange={changeSkills}
+						value={values.communication}
+						placeholder="Enter value between 0 and 10"
 					/>
+					{errors.communication && touched.communication && (
+						<span className="error-message-field">{errors.communication}</span>
+					)}
 				</div>
 				<div className="social-link-container">
-					<span>English </span>
-					<Select data={englishLvl} selectHandle={selectEnglishLvl} />
+					<span>English</span>
+					<Field className="select-menu-container" as="select" name="english">
+						{englishLvl.map((currentItem, index) => (
+							<option
+								value={(10 / englishLvl.length) * (index + 1)}
+								key={currentItem + index}
+							>
+								{currentItem}
+							</option>
+						))}
+					</Field>
 				</div>
 				<div className="social-link-container">
 					<span>Professional skills </span>
-					<input
+					<Field
 						className="new-user-field"
 						name="professionSkills"
-						value={user.skills.professionSkills}
-						maxLength={2}
-						placeholder="Enter value between 1 and 10"
-						onChange={changeSkills}
+						value={values.professionSkills}
+						placeholder="Enter value between 0 and 10"
 					/>
+					{errors.professionSkills && touched.professionSkills && (
+						<span className="error-message-field">
+							{errors.professionSkills}
+						</span>
+					)}
 				</div>
 			</div>
 			<button className="create-user-btn" type="submit">
@@ -162,5 +150,16 @@ const StyledSkillsInfo = styled.div`
 		color: #465374;
 		background-color: white;
 		font-weight: 500;
+	}
+
+	.select-menu-container {
+		margin-top: 4px;
+		padding: 11.25px 8px;
+		border-radius: 6px;
+		border: 1px solid #c3b7b7;
+	}
+
+	.select-menu-container:focus-visible {
+		outline: none;
 	}
 `;
