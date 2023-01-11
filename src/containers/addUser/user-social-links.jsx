@@ -17,7 +17,7 @@ export const UserSocialLinks = ({ values, errors, touched }) => {
 				)}
 			</div>
 			<div className="social-link-container">
-				<span>Github</span>
+				<span className="social-link-label">Github</span>
 				<Field
 					className="new-user-field"
 					name="github"
@@ -29,7 +29,7 @@ export const UserSocialLinks = ({ values, errors, touched }) => {
 				)}
 			</div>
 			<div className="social-link-container">
-				<span>Instagram</span>
+				<span className="social-link-label">Instagram</span>
 				<Field
 					className="new-user-field"
 					name="instagram"
@@ -41,7 +41,7 @@ export const UserSocialLinks = ({ values, errors, touched }) => {
 				)}
 			</div>
 			<div className="social-link-container">
-				<span>Facebook</span>
+				<span className="social-link-label">Facebook</span>
 				<Field
 					className="new-user-field"
 					name="facebook"

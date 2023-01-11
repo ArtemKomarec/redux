@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Select } from "../../components/select";
 import { englishLvl } from "../../assets/constants";
@@ -8,7 +7,6 @@ import { Field } from "formik";
 export const UserSkillsInfo = ({ values, errors, touched }) => {
 	return (
 		<StyledSkillsInfo>
-			<span className="divider"></span>
 			<h1>Skills</h1>
 			<div className="social-links-wrapper">
 				<div className="social-link-container">
@@ -37,16 +35,7 @@ export const UserSkillsInfo = ({ values, errors, touched }) => {
 				</div>
 				<div className="social-link-container">
 					<span>English</span>
-					<Field className="select-menu-container" as="select" name="english">
-						{englishLvl.map((currentItem, index) => (
-							<option
-								value={(10 / englishLvl.length) * (index + 1)}
-								key={currentItem + index}
-							>
-								{currentItem}
-							</option>
-						))}
-					</Field>
+					<Select data={englishLvl} />
 				</div>
 				<div className="social-link-container">
 					<span>Professional skills </span>
@@ -115,13 +104,6 @@ const StyledSkillsInfo = styled.div`
 	.new-user-field:focus {
 		border: 1px solid #064f87cc;
 		outline: #064f87cc;
-	}
-
-	.divider {
-		width: 100%;
-		margin-top: 48px;
-		height: 2px;
-		background-color: #465374;
 	}
 
 	.select-english-lvl {

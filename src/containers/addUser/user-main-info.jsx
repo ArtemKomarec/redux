@@ -85,11 +85,9 @@ export const UserMainInfo = ({ values, errors, touched }) => {
 };
 
 const StyledNewUserMainInfo = styled.div`
-	margin-top: 20px;
-
 	.divider {
 		width: 100%;
-		margin-top: 7px;
+		margin-top: 27px;
 		height: 2px;
 		background-color: #465374;
 	}

@@ -108,10 +108,16 @@ const StyledNextArrow = styled.li`
 	}
 
 	&:active {
-		background-color: white;
+		background-color: ${(props) =>
+			props.currentPage !== Math.ceil(props.allUsers / props.postsPerPage)
+				? "#00a8ff"
+				: "#c6c6c6"};
 
 		svg {
-			fill: #00a8ff;
+			fill: ${(props) =>
+				props.currentPage !== Math.ceil(props.allUsers / props.postsPerPage)
+					? "#00a8ff"
+					: "white"};
 		}
 	}
 `;

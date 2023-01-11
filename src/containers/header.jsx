@@ -15,7 +15,7 @@ export const Header = () => {
 
 const HeaderStyled = styled.div`
 	padding: 14px;
-	background-color: #ffffff;
+	background-color: #465374;
 
 	.navigation-bar {
 		display: flex;
@@ -27,13 +27,18 @@ const HeaderStyled = styled.div`
 const HeaderLink = styled(Link)`
 	padding: 8px 12px;
 	border-radius: 8px;
-	border: 2px solid black;
+	border: 2px solid #465374;
 	text-decoration: none;
-	color: black;
+	background-color: #465374;
+	color: white;
 
 	&:hover {
-		background-color: #494949;
-		color: white;
-		border: white 2px solid;
+		/* background-color: white;
+		color: #465374;
+		border: 2px solid white;
+		transition: ease-in-out 0.3s; */
+		border-radius: 0;
+		border-bottom: 2px solid white;
+		transition: ease-in-out 0.3s;
 	}
 `;

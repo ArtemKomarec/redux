@@ -9,6 +9,7 @@ import { addUserSchema } from "../../assets/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { userAddAction } from "../../store/actionCreators/users";
 import { UserSocialLinks } from "./user-social-links";
+import { toast } from "react-toastify";
 
 export const AddUserForm = () => {
 	const [user, setUser] = useState({
@@ -33,10 +34,6 @@ export const AddUserForm = () => {
 	const dispatch = useDispatch();
 	const id = useSelector(({ users }) => users.length);
 
-	// validate 1 - 10 values
-	// clear inputs
-	// add toast to success
-
 	return (
 		<>
 			<Header />
@@ -59,8 +56,7 @@ export const AddUserForm = () => {
 						professionSkills: "",
 					}}
 					validationSchema={addUserSchema}
-					onSubmit={(values) => {
-						console.log(values);
+					onSubmit={(values, { resetForm }) => {
 						setUser((user) => {
 							dispatch(
 								userAddAction(
@@ -102,6 +98,8 @@ export const AddUserForm = () => {
 								professionSkills: values.professionSkills,
 							};
 						});
+						toast.success("User was added");
+						resetForm();
 					}}
 				>
 					{({ values, errors, touched }) => (
@@ -122,6 +120,7 @@ export const AddUserForm = () => {
 										errors={errors}
 										touched={touched}
 									/>
+									<StyledDivider />
 									<UserSkillsInfo
 										values={values}
 										errors={errors}
@@ -169,4 +168,13 @@ const UserFormWrapper = styled.div`
 		box-shadow: 0 4px 10px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
 		background-color: white;
 	}
+	.divider {
+	}
+`;
+
+const StyledDivider = styled.div`
+	width: 100%;
+	height: 2px;
+	margin-top: 48px;
+	background-color: #465374;
 `;

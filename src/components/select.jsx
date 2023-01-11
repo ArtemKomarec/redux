@@ -1,11 +1,10 @@
 import { Field } from "formik";
 import styled from "styled-components";
 
-export const Select = ({ data, selectHandle }) => {
+export const Select = ({ data }) => {
 	return (
-		<Field>
-			<select className="select-menu-container">
-				<option value="0">Choose option...</option>
+		<StyledSelectMenu>
+			<Field className="select-menu-container" as="select" name="english">
 				{data.map((currentItem, index) => (
 					<option
 						value={(10 / data.length) * (index + 1)}
@@ -14,8 +13,8 @@ export const Select = ({ data, selectHandle }) => {
 						{currentItem}
 					</option>
 				))}
-			</select>
-		</Field>
+			</Field>
+		</StyledSelectMenu>
 	);
 };
 
